@@ -1,0 +1,82 @@
+.contenedor {
+  margin: 21px auto;
+  max-width: 35%;
+  padding: 20px;
+  border: 4px solid #a1b7db;
+  border-radius: 5px;
+  text-align: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: #fff;
+  background: url('../../../assets/img/fondoc.jpg') no-repeat center center fixed;
+  }
+  
+  h1 {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #fff; 
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff; 
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  select, /* Agregado para estilizar el select */
+  button {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  select { /* Estilos específicos para el select */
+    appearance: none;
+    padding: 8px;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  button {
+    border-radius: 15px;
+    background-color: #33577e;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .cuadro-texto {
+    margin-top: 20px;
+    border: 1px solid #928d8d;
+    border-radius: 5px;
+    padding: 10px;  
+    background-color: #a1b7db;
+  }
+    
+
+  body {
+    margin: -21px;
+    padding: 22px;
+    font-family: Arial, sans-serif;
+    background: url('../../../assets/img/fondo2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    // min-height: 100vh; 
+    justify-content: center; 
+    align-items: center;
+  }
+
+  .full-width .p-dropdown-label {
+    width: 100%;
+  }
+  

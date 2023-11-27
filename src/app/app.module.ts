@@ -14,7 +14,8 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-
+import { DropdownModule } from 'primeng/dropdown'; 
+import { MessagesModule } from 'primeng/messages';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     FormsModule,
     HttpClientModule,
     SidebarModule,
+    DropdownModule,
+    MessagesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
