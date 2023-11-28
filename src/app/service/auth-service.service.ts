@@ -19,10 +19,8 @@ export class AuthServiceService {
   constructor(private http: HttpClient) { }
 
   
-  retirar(datos: any): Observable<any> {
-    console.log("estamos llegando");    
+  retirar(datos: any): Observable<any> {    
     const url = 'http://localhost:3000/api/movimientos/';
-    console.log("estamos llegando");   
     return this.http.post<any>(url, datos);
   }
 

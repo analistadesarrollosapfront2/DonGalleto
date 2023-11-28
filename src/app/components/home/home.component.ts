@@ -43,18 +43,16 @@ export class HomeComponent {
   realizarRetiro() {
     const datos = {
       banco: this.bancoSeleccionado,
-      noTarjeta: this.noTarjeta,
+      cuenta: this.noTarjeta,
       nip: this.nip,
-      monto: this.monto
+      cantidad: this.monto
     };
     console.log(  datos);
     
     this.apiService.retirar(datos)
       .subscribe(
         (respuesta) => {
-          console.log('Respuesta del backend:', respuesta);
-         
-          this.mensaje = 'Retiro realizado con éxito'; 
+          this.mensaje = respuesta.mensaje; 
         },
         (error) => {
           console.error('Error en la solicitud:', error);
