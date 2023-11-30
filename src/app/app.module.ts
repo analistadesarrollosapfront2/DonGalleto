@@ -9,6 +9,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarModule } from 'primeng/sidebar';
 
+import {MatButtonModule} from '@angular/material/button';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login/login.component';
@@ -32,6 +34,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
     FormsModule,
     HttpClientModule,
     SidebarModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
