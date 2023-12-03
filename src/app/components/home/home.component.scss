@@ -1,5 +1,5 @@
 .contenedor {
-  margin: 21px auto;
+  margin: 0 auto;
   max-width: 35%;
   padding: 20px;
   border: 4px solid #a1b7db;
@@ -9,7 +9,7 @@
   background-repeat: no-repeat;
   background-position: center center;
   color: #fff;
-  background: url('../../../assets/img/fondoc.jpg') no-repeat center center fixed;
+  background: url('../../../assets/img/fondoc2.jpg') no-repeat center center fixed;
   }
   
   h1 {
@@ -66,15 +66,28 @@
     
 
   body {
-    margin: -21px;
-    padding: 22px;
-    font-family: Arial, sans-serif;
-    background: url('../../../assets/img/fondo2.jpg') no-repeat center center fixed;
-    background-size: cover;
-    // min-height: 100vh; 
-    justify-content: center; 
-    align-items: center;
-  }
+  //   margin: -21px;
+  //   padding: 22px;
+  //   font-family: Arial, sans-serif;
+  //   background: url('../../../assets/img/fondo3.jpg') no-repeat center center fixed;
+  //   background-size: cover;
+  //   // min-height: 100vh; 
+  //   justify-content: center; 
+  //   align-items: center;
+  // }
+margin: -8px;
+  height: 100vh;
+  padding: 2%;
+  font-family: Arial, sans-serif;
+  background-size: auto;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  width: 101%;
+  background: url('../../../assets/img/fondo3.jpg') no-repeat center center fixed;
+
+}
+
 
   .full-width .p-dropdown-label {
     width: 100%;

@@ -11,7 +11,7 @@ export class HomeComponent {
   bancos: any[] = [
     { label: 'Seleccione un banco', value: '' }, 
     { label: 'BBVUTL', value: 'bbvutl' },
-    { label: 'CITYUTL', value: 'cityutl' }
+    { label: 'BANCOEXPRESS', value: 'bancoexpress' }
   ];
   
   bancoSeleccionado: string = '';
