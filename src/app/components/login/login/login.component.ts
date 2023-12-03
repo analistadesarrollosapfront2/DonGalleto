@@ -1,44 +1,56 @@
-import { Component, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
-import { Router } from '@angular/router'; // Importa Router desde '@angular/router'
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [MessageService]
 })
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent {
 
-  constructor(private renderer: Renderer2, private apiService: AuthServiceService, private router: Router) {}
+  constructor(private apiService: AuthServiceService, private router: Router, private messageService: MessageService) { }
 
-  ngAfterViewInit() {
-    // Agrega la clase "show" para activar la animación
-    this.renderer.addClass(document.querySelector('.login-container'), 'show');
-  }
-
-  usuario: string = '';
+  correo: string = '';
   contrasenia: string = '';
   mensajeError: string = '';
+  usuario: string = '';
 
- iniciarSesion() {
-  if (this.usuario && this.contrasenia) {
-    this.apiService.iniciarSesion(this.usuario, this.contrasenia).subscribe(
-      (response: any) => {
+  iniciarSesion() {
+    if (!this.correo || !this.contrasenia) {
+      this.messageService.clear();
+      this.messageService.add({ key: 'toast', severity: 'error', summary: 'Error', detail: 'Por favor, completa todos los campos.' });
+      return;
+    }
+    this.apiService.iniciarSesion(this.correo, this.contrasenia).subscribe(
+      (response) => {
         if (response) {
-          sessionStorage.setItem('sesionIniciada', response);
-          this.router.navigate(['/home']);
+          console.log(response);
+          if (response.status !== 1) {
+            this.messageService.add({ key: 'toast', severity: 'error', summary: 'Error', detail: response.message, life: 3000 });
+          } else {
+            this.usuario = this.correo;
+            sessionStorage.setItem('sesionIniciada', 'true');
+            sessionStorage.setItem('usuario', this.usuario);
+            this.router.navigate(['/home']);
+          }
         } else {
+          this.messageService.clear();
           this.mensajeError = 'Credenciales incorrectas. Inténtalo de nuevo.';
           sessionStorage.setItem('sesionIniciada', 'false');
         }
       },
-      (error: any) => {
+      (error) => {
         console.error('Error al iniciar sesión', error);
         this.mensajeError = 'Ocurrió un error al iniciar sesión. Inténtalo de nuevo más tarde.';
       }
     );
   }
-}
 
-
+  showToast1() {
+    this.messageService.clear();
+    this.messageService.add({ key: 'toast', severity: 'success', summary: `¡Bienvenido!`, detail: `Hola, ${this.usuario}` });
+  }
 }
