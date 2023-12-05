@@ -1,29 +1,31 @@
 <div class="menu">
-    <!-- Botón para mostrar el sidebar -->
-    <p-button (click)="sidebarVisible = true" icon="pi pi-bars" class="sidebar-toggle-button"></p-button>
-  
-    <!-- Sidebar -->
-    <p-sidebar [(visible)]="sidebarVisible">
-      <ng-template pTemplate="header">
-        <div class="sidenav-header">
-          <img src="../../../assets/img/logo.png" alt="Logo">
-        </div>
-      </ng-template>
-  
-      <ng-template pTemplate="content">
-        <ul>
-          <li>Ventas</li>
-          <li>Productos</li>
-          <li>Control de Ventas</li>
-          <li>Control de Productos</li>
-        </ul>
-      </ng-template>
-  
-      <ng-template pTemplate="footer">
-        <div class="sidenav-footer">
-          <a href="#">Cerrar sesión</a>
-        </div>
-      </ng-template>
-    </p-sidebar>
-  </div>
-  
+  <!-- Botón para mostrar el sidebar -->
+  <!-- <p-button (click)="sidebarVisible = true" icon="pi pi-bars" class="sidebar-toggle-button"></p-button> -->
+  <p-button (click)="sidebarVisible = true" icon="pi pi-bars" iconPos="left" class="sidebar-toggle-button">Abrir Sidebar</p-button>
+
+
+  <!-- Sidebar -->
+  <p-sidebar [(visible)]="sidebarVisible">
+    <ng-template pTemplate="header">
+      <div class="sidenav-header">
+        <img src="../../../assets/img/logo.png" alt="Logo">
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+      <ul>
+        
+        <li>Ventas</li>
+        <li>Productos</li>
+        <li>Control de Ventas</li>
+        <li>Control de Productos</li>
+      </ul>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <div class="sidenav-footer">
+        <a href="#">Cerrar sesión</a>
+      </div>
+    </ng-template>
+  </p-sidebar>
+</div>
