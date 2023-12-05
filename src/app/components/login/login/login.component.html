@@ -17,7 +17,7 @@
           </span>
         </div>
         <p-toast key="toast"></p-toast> 
-        <button mat-raised-button color="primary" type="submit">Iniciar Sesión</button> 
+        <button [disabled]="validarLogin" mat-raised-button color="primary" type="submit">Iniciar Sesión</button> 
       </form>
     </div>
   </div>

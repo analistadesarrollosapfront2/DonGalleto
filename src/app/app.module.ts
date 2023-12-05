@@ -10,6 +10,10 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarModule } from 'primeng/sidebar';
 import { ToastModule } from 'primeng/toast';
+import { DividerModule } from 'primeng/divider';
+import { TableModule } from 'primeng/table';
+import { PanelModule } from 'primeng/panel';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 // Material
 import {MatButtonModule} from '@angular/material/button';
@@ -40,6 +44,10 @@ import { CardModule } from 'primeng/card';
     MatButtonModule,
     ToastModule,
     CardModule,
+    DividerModule,
+    TableModule,
+    PanelModule,
+    ScrollPanelModule
   ],
   providers: [],
   bootstrap: [AppComponent]
