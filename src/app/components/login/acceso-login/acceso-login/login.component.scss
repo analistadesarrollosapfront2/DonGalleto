@@ -1,0 +1,38 @@
+
+  
+  /* Contenedor principal */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  /* Contenedor del formulario */
+  .login-container {
+    max-width: 321px;
+    padding: 31px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #352b28; 
+    color: #fdfdfd; 
+    text-align: center;
+  }
+  
+  /* Campos de entrada */
+  .p-field {
+    margin-bottom: 20px;
+  }
+  
+  /* Botón de inicio de sesión */
+  button {
+    background-color: #814f28; 
+    color: #fdfdfd; 
+  }
+  
+ 
+  h2 {
+    margin-top: 0;
+  }
+  

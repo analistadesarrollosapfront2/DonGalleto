@@ -1,10 +1,7 @@
 <div class="menu">
-  <!-- Botón para mostrar el sidebar -->
-  <!-- <p-button (click)="sidebarVisible = true" icon="pi pi-bars" class="sidebar-toggle-button"></p-button> -->
-  <p-button (click)="sidebarVisible = true" icon="pi pi-bars" iconPos="left" class="sidebar-toggle-button">Abrir Sidebar</p-button>
-
-
-  <!-- Sidebar -->
+  <p-button (click)="sidebarVisible = true" class="sidebar-toggle-button">
+    <i class="pi pi-microsoft" style="font-size: 2rem"></i>
+  </p-button>
   <p-sidebar [(visible)]="sidebarVisible">
     <ng-template pTemplate="header">
       <div class="sidenav-header">
@@ -14,11 +11,15 @@
 
     <ng-template pTemplate="content">
       <ul>
-        
-        <li>Ventas</li>
-        <li>Productos</li>
-        <li>Control de Ventas</li>
-        <li>Control de Productos</li>
+        <li  (click)="sidebarVisible = false">
+          <a   routerLink="/home">Ventas de Productos</a>
+        </li>
+        <li  (click)="sidebarVisible = false">
+          <a  routerLink="/accesoLogin">Control de Ventas</a>
+        </li>
+        <li  (click)="sidebarVisible = false">
+          <a routerLink="/recuperacionLogin">Control de Productos</a>
+        </li>
       </ul>
     </ng-template>
 

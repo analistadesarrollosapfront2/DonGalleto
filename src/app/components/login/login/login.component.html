@@ -3,7 +3,7 @@
   <div class="container">
     <div class="p-card login-container">
       <h2>Inicio de Sesión</h2>
-      <form (ngSubmit)="iniciarSesion()" autocomplete="off"> 
+      <form (ngSubmit)="iniciarSesion()" autocomplete="off">
         <div class="p-field">
           <span class="p-float-label">
             <input id="correo" type="text" pInputText [(ngModel)]="correo" name="correo" required>
@@ -16,8 +16,13 @@
             <label for="contrasenia">Contraseña</label>
           </span>
         </div>
-        <p-toast key="toast"></p-toast> 
-        <button [disabled]="validarLogin" mat-raised-button color="primary" type="submit">Iniciar Sesión</button> 
+        <p-toast key="toast"></p-toast>
+        <button [disabled]="validarLogin" mat-raised-button color="primary" type="submit">Iniciar Sesión</button>
+        <div class="links">
+          <a routerLink="/recuperacionLogin">¿Olvidaste tu contraseña?</a>
+          <br>
+          <a routerLink="/accesoLogin">Regístrate</a>
+        </div>
       </form>
     </div>
   </div>

@@ -3,13 +3,35 @@
 .menu {
     position: relative;
   }
-  
+
   .sidebar-toggle-button {
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      z-index: 2;
-      transform: scale(0.7);
+    position: absolute;
+    z-index: 2;
+    transform: scale(0.6);
+    margin: -15px;
   }
-    
-  
+
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  li:hover {
+    background-color: #f0f0f0;
+    transform: translateX(5px);
+  }
+
+
+  li:hover mat-icon {
+    transform: translateX(2px);
+  }
