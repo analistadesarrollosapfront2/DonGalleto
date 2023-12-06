@@ -34,8 +34,8 @@ import { LoginComponent } from './components/login/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CardModule } from 'primeng/card';
-import { AccesoLoginComponent } from './components/login/acceso-login/acceso-login/acceso-login.component';
-import { RecuperacionLoginComponent } from './components/login/recuperacion-login/recuperacion-login/recuperacion-login.component';
+import { RegistroLoginComponent } from './components/login/registro-login/registro-login.component';
+import { RecuperacionLoginComponent } from './components/login/recuperacion-login/recuperacion-login.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +43,8 @@ import { RecuperacionLoginComponent } from './components/login/recuperacion-logi
     LoginComponent,
     HomeComponent,
     SidenavComponent,
-    AccesoLoginComponent,
     RecuperacionLoginComponent,
+    RegistroLoginComponent,
   ],
   imports: [
     BrowserModule,
