@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 
 @Component({
@@ -9,34 +7,30 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
   styleUrls: ['./recuperacion-login.component.scss'],
 })
 export class RecuperacionLoginComponent {
-  constructor(public apiService: AuthServiceService, public router: Router) {}
+  constructor(private apiService: AuthServiceService) {}
 
   correo: string = '';
-  mensajeError: string = '';
+  correoValido: boolean = true;
 
-  iniciarSesion() {
-    // if (!this.correo ) {
-    //   return;
-    // }
-    // this.apiService.iniciarSesion(this.correo).subscribe(
-    //   (response) => {
-    //     if (response.estatus != 1) {
-    //     } else {
-    //       sessionStorage.setItem('sesionIniciada', 'true');
-    //       sessionStorage.setItem('usuario', response.data);
-    //       this.router.navigate(['/login']);
-    //     }
-    //   },
-    //   (error) => {
-    //     console.error('Error al iniciar sesión', error);
-    //     this.mensajeError = 'Ocurrió un error al iniciar sesión. Inténtalo de nuevo más tarde.';
-    //   }
-    // );
+  validarCorreo() {
+    this.correoValido = this.correo.endsWith('@gmail.com');
   }
 
-  public get validarLogin() {
-    if (this.correo != '' && this.correo.includes('@gmail.com')) return false;
+  recuperar() {
+    if (!this.correoValido || !this.correo) {
+      return;
+    }
+    this.apiService.enviarCorreoRecuperacion(this.correo).subscribe(
+      (response) => {
+        if (response.estatus !== 1) {
 
-    return true;
+        } else {
+        }
+      },
+      (error) => {
+        console.error('Error al enviar correo de recuperación', error);
+
+      }
+    );
   }
 }

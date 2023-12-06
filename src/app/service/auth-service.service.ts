@@ -24,4 +24,18 @@ export class AuthServiceService {
     return this.http.post<any>(url, body);
   }
 
+
+  registrar(correo: string, contrasenia: string): Observable<any> {
+    const url = 'http://localhost:3000/api/usuarios/registrar/';
+    const body = { correo, contrasenia };
+    console.log('Datos enviados para registro:', body);
+    return this.http.post<any>(url, body, httpOptions);
+  }
+
+  enviarCorreoRecuperacion(correo: string): Observable<any> {
+    const url = 'http://localhost:3000/api/usuarios/recuperar/';
+    const body = { correo };
+    console.log('Correo enviado para recuperación:', body);
+    return this.http.post<any>(url, body, httpOptions);
+  }
 }

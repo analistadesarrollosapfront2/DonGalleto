@@ -10,19 +10,23 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
 export class RegistroLoginComponent {
   constructor(private apiService: AuthServiceService, private router: Router) {}
 
+
   correo: string = '';
   contrasenia: string = '';
-  confirmarContrasenia = '';
+  confirmarContrasenia: string = '';
   mensajeError: string = '';
   usuario: string = '';
 
-  registrar() {
-    if (!this.correo || !this.contrasenia) {
+  registro() {
+    if (!this.correo || !this.contrasenia || this.contrasenia !== this.confirmarContrasenia) {
+
       return;
     }
-    this.apiService.iniciarSesion(this.correo, this.contrasenia).subscribe(
+
+    this.apiService.registrar(this.correo, this.contrasenia).subscribe(
       (response) => {
         if (response.estatus != 1) {
+
         } else {
           sessionStorage.setItem('sesionIniciada', 'true');
           sessionStorage.setItem('usuario', response.data);
@@ -30,22 +34,21 @@ export class RegistroLoginComponent {
         }
       },
       (error) => {
-        console.error('Error al iniciar sesión', error);
+        console.error('Error al registrarse', error);
         this.mensajeError =
-          'Ocurrió un error al iniciar sesión. Inténtalo de nuevo más tarde.';
+          'Ocurrió un error al registrarse. Inténtalo de nuevo más tarde.';
       }
     );
   }
 
-  public get validarLogin() {
-    if (
-      this.correo != '' &&
-      this.correo.includes('@gmail.com') &&
-      this.contrasenia != '' &&
-      this.confirmarContrasenia != ''
-    )
-      return false;
+  public get validarLogin(): boolean {
 
-    return true;
+    return !(
+      this.correo !== '' &&
+      this.correo.includes('@gmail.com') &&
+      this.contrasenia !== '' &&
+      this.confirmarContrasenia !== '' &&
+      this.contrasenia === this.confirmarContrasenia
+    );
   }
 }

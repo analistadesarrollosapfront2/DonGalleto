@@ -1,16 +1,15 @@
 <div class="container">
   <div class="p-card login-recuperacion-container">
-    <h2>Recuperacion de cuenta</h2>
-    <form (ngSubmit)="iniciarSesion()" autocomplete="off">
-
+    <h2>Recuperación de cuenta</h2>
+    <form (ngSubmit)="recuperar()" autocomplete="off">
       <div class="p-field">
         <span class="p-float-label">
-          <input id="correo" type="text" pInputText name="correo" required>
+          <input id="correo" type="text" pInputText [(ngModel)]="correo" name="correo" required (input)="validarCorreo()">
+
           <label for="correo">Correo Electrónico</label>
         </span>
       </div>
-      <button [disabled]="validarLogin" mat-raised-button color="primary" type="submit">Enviar</button>
-
+      <button [disabled]="!correoValido" mat-raised-button color="primary" type="submit">Enviar</button>
     </form>
   </div>
 </div>
