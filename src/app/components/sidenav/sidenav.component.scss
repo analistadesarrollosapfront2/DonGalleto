@@ -4,6 +4,13 @@
     position: relative;
   }
 
+  ::ng-deep .p-sidebar-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
   .sidebar-toggle-button {
     position: absolute;
     z-index: 2;
@@ -11,6 +18,13 @@
     margin: -15px;
   }
 
+
+  :host ::ng-deep [type=button]:not(:disabled)
+   {
+      cursor: pointer;
+      background-color: #b27b4b;
+      border-color: #814f28;
+  }
 
   ul {
     list-style-type: none;

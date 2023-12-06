@@ -3,11 +3,12 @@
     <i class="pi pi-microsoft" style="font-size: 2rem"></i>
   </p-button>
   <p-sidebar [(visible)]="sidebarVisible">
-    <ng-template pTemplate="header">
+    <ng-template class="head" pTemplate="header">
       <div class="sidenav-header">
         <img src="../../../assets/img/logo.png" alt="Logo">
       </div>
     </ng-template>
+
 
     <ng-template pTemplate="content">
       <ul>
@@ -15,10 +16,10 @@
           <a   routerLink="/home">Ventas de Productos</a>
         </li>
         <li  (click)="sidebarVisible = false">
-          <a  routerLink="/accesoLogin">Control de Ventas</a>
+          <a  routerLink="/">Control de Ventas</a>
         </li>
         <li  (click)="sidebarVisible = false">
-          <a routerLink="/recuperacionLogin">Control de Productos</a>
+          <a routerLink="/">Control de Productos</a>
         </li>
       </ul>
     </ng-template>
