@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { AuthServiceService } from 'src/app/service/auth-service.service';
 
@@ -7,10 +8,10 @@ import { AuthServiceService } from 'src/app/service/auth-service.service';
   styleUrls: ['./recuperacion-login.component.scss'],
 })
 export class RecuperacionLoginComponent {
-  constructor(private apiService: AuthServiceService) {}
+  constructor(private apiService: AuthServiceService, private router: Router) {}
 
   correo: string = '';
-  correoValido: boolean = true;
+  correoValido: boolean = false;
 
   validarCorreo() {
     this.correoValido = this.correo.endsWith('@gmail.com');
@@ -33,4 +34,6 @@ export class RecuperacionLoginComponent {
       }
     );
   }
+
+
 }
