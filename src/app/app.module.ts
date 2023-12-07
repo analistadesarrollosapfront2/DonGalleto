@@ -37,7 +37,8 @@ import { CardModule } from 'primeng/card';
 import { RegistroLoginComponent } from './components/login/registro-login/registro-login.component';
 import { RecuperacionLoginComponent } from './components/login/recuperacion-login/recuperacion-login.component';
 import { ControlVentasComponent } from './components/control-ventas/control-ventas.component';
-
+import { MessageService } from 'primeng/api';
+import { TabViewModule } from 'primeng/tabview';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,8 +77,9 @@ import { ControlVentasComponent } from './components/control-ventas/control-vent
     MatSnackBarModule,
     MatSelectModule,
     ReactiveFormsModule,
+    TabViewModule,
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
