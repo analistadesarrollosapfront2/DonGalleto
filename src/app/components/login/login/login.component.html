@@ -20,7 +20,12 @@
           </span>
         </div>
         <p-toast key="toast"></p-toast>
-        <button mat-raised-button id="btn-login" type="submit">Iniciar Sesión</button>
+        <button [disabled]="validarLogin" mat-raised-button id="btn-login" type="submit">Iniciar Sesión</button>
+        <div class="links">
+          <a routerLink="/recuperacionLogin">¿Olvidaste tu contraseña?</a>
+          <br>
+          <a routerLink="/accesoLogin">Regístrate</a>
+        </div>
       </form>
     </div>
   </div>

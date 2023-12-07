@@ -10,6 +10,10 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarModule } from 'primeng/sidebar';
 import { ToastModule } from 'primeng/toast';
+import { DividerModule } from 'primeng/divider';
+import { TableModule } from 'primeng/table';
+import { PanelModule } from 'primeng/panel';
+import { ScrollPanelModule } from 'primeng/scrollpanel';
 
 // Material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -30,6 +34,9 @@ import { LoginComponent } from './components/login/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CardModule } from 'primeng/card';
+import { RegistroLoginComponent } from './components/login/registro-login/registro-login.component';
+import { RecuperacionLoginComponent } from './components/login/recuperacion-login/recuperacion-login.component';
+import { ControlVentasComponent } from './components/control-ventas/control-ventas.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +44,9 @@ import { CardModule } from 'primeng/card';
     LoginComponent,
     HomeComponent,
     SidenavComponent,
+    RecuperacionLoginComponent,
+    RegistroLoginComponent,
+    ControlVentasComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +61,10 @@ import { CardModule } from 'primeng/card';
     MatButtonModule,
     ToastModule,
     CardModule,
+    DividerModule,
+    TableModule,
+    PanelModule,
+    ScrollPanelModule,
     MatSlideToggleModule,
     MatSidenavModule,
     MatIconModule,

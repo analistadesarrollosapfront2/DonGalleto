@@ -1,2 +1,4 @@
-<app-sidenav></app-sidenav>
+<div class="menu" *ngIf="showSidebar()">
+  <app-sidenav></app-sidenav>
+</div>
 <router-outlet></router-outlet>

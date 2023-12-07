@@ -1,10 +1,51 @@
+@import "primeicons/primeicons.css";
+
 .menu {
-  position: relative;
+    position: relative;
+  }
+
+  ::ng-deep .p-sidebar-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-evenly;
 }
 
-.sidebar-toggle-button {
-  position: absolute;
-  top: 10px; 
-  left: 10px; 
-  z-index: 2; 
-}
+  .sidebar-toggle-button {
+    position: absolute;
+    z-index: 2;
+    transform: scale(0.6);
+    margin: -15px;
+  }
+
+
+  :host ::ng-deep [type=button]:not(:disabled)
+   {
+      cursor: pointer;
+      background-color: #b27b4b;
+      border-color: #814f28;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  li:hover {
+    background-color: #f0f0f0;
+    transform: translateX(5px);
+  }
+
+
+  li:hover mat-icon {
+    transform: translateX(2px);
+  }

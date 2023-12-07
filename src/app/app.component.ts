@@ -1,5 +1,6 @@
 import { Component,ViewChild } from '@angular/core';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,15 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 export class AppComponent {
   @ViewChild('sidenav') sidenavComponent!: SidenavComponent;
   title = 'ShopStream';
-}
 
-// public menu(){
-//   this.sidenavComponent.sidenavfunction();
-// }
-//
+constructor(private router: Router) {}
+
+  showSidebar(): boolean {
+    const currentRoute = this.router.url;
+    return !(
+      currentRoute === '/login' ||
+      currentRoute === '/accesoLogin' ||
+      currentRoute === '/recuperacionLogin'
+    );
+  }
+}

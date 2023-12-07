@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="p-card login-recuperacion-container">
+    <h2>Recuperación de cuenta</h2>
+    <form (ngSubmit)="recuperar()" autocomplete="off">
+      <div class="p-field">
+        <span class="p-float-label">
+          <input id="correo" type="text" pInputText [(ngModel)]="correo" name="correo" required (input)="validarCorreo()">
+
+          <label for="correo">Correo Electrónico</label>
+        </span>
+      </div>
+      <button [disabled]="!correoValido" mat-raised-button color="primary" type="submit">Enviar</button>
+    </form>
+    <br>
+    <a href="/login" class="btn btn-outline-primary">
+      <i class="bi bi-arrow-left"></i> Regresar al Login
+    </a>
+
+</div>
