@@ -17,11 +17,15 @@ const httpOptions = {
 export class AuthServiceService {
   constructor(private http: HttpClient) { }
 
-
   iniciarSesion(correo: string, contrasenia: string): Observable<any> {
     const url = 'http://localhost:3000/api/usuarios/login/';
     const body = { correo, contrasenia };
     return this.http.post<any>(url, body);
+  }
+
+  obtenerProductos(): Observable<any> {
+    const url = 'http://localhost:3000/api/productos/listarProductos/';
+    return this.http.get<any>(url);
   }
 
 }
