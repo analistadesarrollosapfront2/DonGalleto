@@ -26,7 +26,7 @@ export class LoginComponent {
     }
     this.apiService.iniciarSesion(this.correo, this.contrasenia).subscribe(
       (response) => {
-        
+
         if (response.estatus != 1) {
           this.messageService.add({ key: 'toast', severity: 'error', summary: 'Error', detail: response.mensaje, life: 3000 });
         } else {
@@ -34,7 +34,7 @@ export class LoginComponent {
           sessionStorage.setItem('usuario', response.data);
           this.router.navigate(['/home']);
         }
-        
+
       },
       (error) => {
         console.error('Error al iniciar sesión', error);
@@ -43,10 +43,7 @@ export class LoginComponent {
     );
   }
 
-  showToast1() {
-    this.messageService.clear();
-    this.messageService.add({ key: 'toast', severity: 'success', summary: `¡Bienvenido!`, detail: `Hola, ${this.usuario}` });
-  }
+
 
   public get validarLogin(){
     if(
@@ -55,7 +52,7 @@ export class LoginComponent {
       ) &&
       this.contrasenia != ""
       )return false;
-    
+
     return true;
   }
 }

@@ -34,6 +34,9 @@ import { LoginComponent } from './components/login/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { CardModule } from 'primeng/card';
+import { RegistroLoginComponent } from './components/login/registro-login/registro-login.component';
+import { RecuperacionLoginComponent } from './components/login/recuperacion-login/recuperacion-login.component';
+import { ControlVentasComponent } from './components/control-ventas/control-ventas.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { CardModule } from 'primeng/card';
     LoginComponent,
     HomeComponent,
     SidenavComponent,
+    RecuperacionLoginComponent,
+    RegistroLoginComponent,
+    ControlVentasComponent,
   ],
   imports: [
     BrowserModule,
