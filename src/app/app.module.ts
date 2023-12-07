@@ -14,6 +14,10 @@ import { DividerModule } from 'primeng/divider';
 import { TableModule } from 'primeng/table';
 import { PanelModule } from 'primeng/panel';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { MessageService } from 'primeng/api';
+import { TabViewModule } from 'primeng/tabview';
+import { CheckboxModule } from 'primeng/checkbox';
+import { SpeedDialModule } from 'primeng/speeddial';
 
 // Material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -37,8 +41,7 @@ import { CardModule } from 'primeng/card';
 import { RegistroLoginComponent } from './components/login/registro-login/registro-login.component';
 import { RecuperacionLoginComponent } from './components/login/recuperacion-login/recuperacion-login.component';
 import { ControlVentasComponent } from './components/control-ventas/control-ventas.component';
-import { MessageService } from 'primeng/api';
-import { TabViewModule } from 'primeng/tabview';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +81,8 @@ import { TabViewModule } from 'primeng/tabview';
     MatSelectModule,
     ReactiveFormsModule,
     TabViewModule,
+    CheckboxModule,
+    SpeedDialModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
