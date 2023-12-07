@@ -1,24 +1,30 @@
 <html>
-
+<img id="img-back" src="" alt="">
+<body>
   <div class="container">
+    <!-- <img id="imgGalleta1" src="../../../assets/img/choco.png" alt=""> -->
     <div class="p-card login-container">
+
       <h2>Inicio de Sesión</h2>
-      <form (ngSubmit)="iniciarSesion()" autocomplete="off"> 
+      <form (ngSubmit)="iniciarSesion()" autocomplete="off">
         <div class="p-field">
           <span class="p-float-label">
             <input id="correo" type="text" pInputText [(ngModel)]="correo" name="correo" required>
-            <label for="correo">Correo Electrónico</label>
+            <label class="label" for="correo">Correo Electrónico</label>
           </span>
         </div>
         <div class="p-field">
           <span class="p-float-label">
             <input id="contrasenia" type="password" pInputText [(ngModel)]="contrasenia" name="contrasenia" required>
-            <label for="contrasenia">Contraseña</label>
+            <label class="label" for="contrasenia">Contraseña</label>
           </span>
         </div>
-        <p-toast key="toast"></p-toast> 
-        <button mat-raised-button color="primary" type="submit">Iniciar Sesión</button> 
+        <p-toast key="toast"></p-toast>
+        <button mat-raised-button id="btn-login" type="submit">Iniciar Sesión</button>
       </form>
     </div>
   </div>
+</body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap-grid.min.css" />
 
+</html>
