@@ -8,11 +8,15 @@ import { ControlVentasService } from 'src/app/service/control-ventas/control-ven
   styleUrls: ['./control-ventas.component.scss'],
 })
 export class ControlVentasComponent implements OnInit {
+  // Ventas
   ventas: any[] = [];
   selectedVentas: string[] = [];
   value: any | undefined;
   items: any[] = [];
-
+  // Utilidades
+  utilidades: any[] = [];
+  value2: any | undefined;
+  items2: any[] = [];
   constructor(
     private ventasService: ControlVentasService,
     private messageService: MessageService
@@ -20,10 +24,10 @@ export class ControlVentasComponent implements OnInit {
 
   ngOnInit() {
     this.getVentas();
-    this.configureItems();
+    this.configureItemsV();
   }
 
-  configureItems() {
+  configureItemsV() {
     this.items = [
       {
         icon: 'pi pi-book',
@@ -83,5 +87,21 @@ export class ControlVentasComponent implements OnInit {
     } else {
       this.getVentas();
     }
+  }
+
+
+
+
+
+  getUtilidades() {
+    this.ventasService.getUtilidades().subscribe(
+      (response) => {
+        this.utilidades = response;
+      },
+      (error) => {
+        console.error('Error al obtener ventas:', error);
+        this.utilidades = [];
+      }
+    );
   }
 }
