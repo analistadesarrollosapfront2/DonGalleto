@@ -10,14 +10,18 @@
 
   /* Contenedor del formulario */
   .login-recuperacion-container {
-    max-width: 321px;
-    padding: 31px;
+    font-size: 1.5em;
+    margin-top: 5%;
+    height: auto;
+    max-width: 100vw;
+    padding: 5vh 5vw;
     border: 1px solid #ccc;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #352b28;
-    color: #fdfdfd;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    background-color: #fdfdfd;
+    color: #814f28;
     text-align: center;
+    z-index: 1000;
   }
 
   /* Campos de entrada */
@@ -26,9 +30,21 @@
   }
 
   /* Botón de inicio de sesión */
-  button {
+  #btn-login {
     background-color: #814f28;
     color: #fdfdfd;
+    width: 100%;
+    font-size: 1em;
+    padding: 10%;
+  }
+
+  #btn-regresar {
+    margin-top: 5%;
+    background-color: #f5cda2;
+    color: #814f28;
+    width: 100%;
+    font-size: 1em;
+    padding: 10%;
   }
 
   #correo{
