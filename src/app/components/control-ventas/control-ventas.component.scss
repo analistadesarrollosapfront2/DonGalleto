@@ -1,0 +1,32 @@
+.buscador{
+  display: flex;
+  margin: .5%;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.tituloTabla{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  margin-left: 3%;
+  font-size: revert-layer;
+}
+
+:host ::ng-deep .p-speeddial-button.p-button.p-button-icon-only {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  border-radius: 50% !important;
+  background-color: #814f28;
+  border: #814f28;
+}
+
+:host ::ng-deep .p-speeddial-direction-right {
+  left: 0 !important;
+  top: calc(100% - 2.5rem) !important;
+}
+
+:host ::ng-deep a {
+  color: #fff;
+  background-color: #b27b4b;
+}

@@ -7,7 +7,6 @@ import { MessageService } from 'primeng/api';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [MessageService]
 })
 export class LoginComponent {
 
@@ -29,6 +28,7 @@ export class LoginComponent {
 
         if (response.estatus != 1) {
           this.messageService.add({ key: 'toast', severity: 'error', summary: 'Error', detail: response.mensaje, life: 3000 });
+          this.messageService.add({ key: 'toast', severity: 'error', summary: 'Error', detail: 'Por favor, completa todos los campos.' });
         } else {
           sessionStorage.setItem('sesionIniciada', 'true');
           sessionStorage.setItem('usuario', response.data);
@@ -55,4 +55,12 @@ export class LoginComponent {
 
     return true;
   }
+
+  show() {
+    this.messageService.addAll([
+        { severity: 'success', summary: 'Message 1', detail: 'Message Content' },
+        { severity: 'info', summary: 'Message 2', detail: 'Message Content' },
+        { severity: 'warn', summary: 'Message 3', detail: 'Message Content' }
+    ]);
+}
 }
