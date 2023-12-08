@@ -22,6 +22,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ImageModule } from 'primeng/image';
 
+import { TreeSelectModule } from 'primeng/treeselect';
 
 // Material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -97,7 +98,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     InputNumberModule,
     ImageModule,
     DynamicDialogModule,
-
+    TreeSelectModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

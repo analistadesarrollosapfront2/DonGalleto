@@ -4,6 +4,25 @@
   align-items: baseline;
   justify-content: space-between;
 }
+.p-field {
+  margin-bottom: 25px;
+}
+
+input{
+  width: 100%;
+}
+
+.label{
+ margin-left: 0.5em;
+}
+
+#btn-login {
+  background-color: #814f28;
+  color: #fdfdfd;
+  width: 100%;
+  font-size: 1em;
+  padding: 25px;
+}
 
 .tituloTabla{
   font-family: 'Roboto', sans-serif;

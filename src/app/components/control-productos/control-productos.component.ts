@@ -1,10 +1,13 @@
 import { ControlProductosService } from 'src/app/service/control-productos/control-productos.service';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 // import * as jsPDF from 'jspdf';
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
-import * as XLSX from 'xlsx';
+// import { jsPDF } from 'jspdf';
+// import html2canvas from 'html2canvas';
+// import * as XLSX from 'xlsx';
 import { DialogService } from 'primeng/dynamicdialog';
+import { MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-control-productos',
   templateUrl: './control-productos.component.html',
@@ -15,16 +18,38 @@ export class ControlProductosComponent {
   value: any | undefined;
   items: any[] = [];
   productos: any[] = [];
+  visible : boolean = false;
+  visible2 : boolean = false;
+  visible3 : boolean = false;
+  visible4 : boolean = false;
+  visible5 : boolean = false;
+  visible6 : boolean = false;
+  visibleConfirm : boolean = false;
+  nombre: string = "";
+  nombreEditar: string = "";
+  idUnidadEditar : number = 0;
+  idEditar: number = 0;
   // MateriaPrima
   value2: any | undefined;
   items2: any[] = [];
   materias: any[] = [];
+  nombre_merma : string ="";
+  costo : number = 0;
+  stock : number = 0;
   // Mermas
   value3: any | undefined;
   items3: any[] = [];
   mermas: any[] = [];
+  monto_mermado : number = 0;
+  causa : string = "";  
 
-  constructor(private productoService: ControlProductosService,public dialogService: DialogService) {}
+  nodes: any[] = [];
+
+  selectedNodes: any;
+
+  constructor(
+    private productoService: ControlProductosService, private messageService: MessageService, private route: ActivatedRoute
+  ) { }
 
   @ViewChild('materiasTable', { static: false }) materiasTable!: ElementRef;
   @ViewChild('mermasTable', { static: false }) mermasTable!: ElementRef;
@@ -32,25 +57,25 @@ export class ControlProductosComponent {
 
   ngOnInit() {
     this.getMaterias();
-    this.configureItemsMaterial();
+    // this.configureItemsMaterial();
 
     this.getMermas();
     this.configureItemsMermas();
 
     this.getProductos();
-    this.configureItemsProducto();
+    // this.configureItemsProducto();
   }
 
-  configureItemsMaterial() {
-    this.items = [
+  configureItemsP() {
+    this.items3 = [
       {
         icon: 'pi pi-book',
         command: () => {
-          this.generarPDF('materias');
-          this.generarExcel('materias');
+          console.log('Habrir ');
+          this.visible5 = true;
         },
         tooltipOptions: {
-          tooltipLabel: 'Reporte',
+          tooltipLabel: 'Agregar',
         },
       },
       {
@@ -62,7 +87,72 @@ export class ControlProductosComponent {
       },
       {
         icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
-        command: () => {},
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Pastel',
+        },
+      },
+    ];
+  }
+
+  showModal(){
+    this.visible = true;
+  }
+
+  hidenModal(){
+    this.visible = false;
+  }
+
+  showDialog(){
+    this.visibleConfirm = true;
+  }
+
+  getProductos() {
+    this.productoService.getProductos().subscribe(
+      (response) => {
+        console.log(response)
+        this.productos = response;
+      },
+      (error) => {
+        console.error('Error al obtener los productos:', error);
+        this.productos = [];
+      }
+    );
+  }
+
+  applyFilter() {
+    if (this.value) {
+      this.productos = this.productos.filter((productos: any) =>
+      productos.nombre_producto.toLowerCase().includes(this.value.toLowerCase())
+    );
+
+    } else {
+      this.getProductos();
+    }
+  }
+
+  configureItemsMP() {
+    this.items2 = [
+      {
+        icon: 'pi pi-book',
+        command: () => {
+          console.log('Habrir ');
+          this.visible3 = true;
+        },
+        tooltipOptions: {
+          tooltipLabel: 'Reporte',
+        },
+      },
+      {
+        icon: 'pi pi-chart-bar',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Barras',
+        },
+      },
+      {
+        icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
+        command: () => { },
         tooltipOptions: {
           tooltipLabel: 'Grafica de Pastel',
         },
@@ -98,11 +188,10 @@ export class ControlProductosComponent {
       {
         icon: 'pi pi-book',
         command: () => {
-          this.generarPDF('mermas');
-          this.generarExcel('mermas');
+          this.showModal();
         },
         tooltipOptions: {
-          tooltipLabel: 'Reporte',
+          tooltipLabel: 'Agergar',
         },
       },
       {
@@ -145,119 +234,96 @@ export class ControlProductosComponent {
     }
   }
 
-  configureItemsProducto() {
-    this.items3 = [
-      {
-        icon: 'pi pi-book',
-        command: () => {
-          this.generarPDF('productos');
-          this.generarExcel('productos');
-        },
-        tooltipOptions: {
-          tooltipLabel: 'Reporte',
-        },
-      },
-      {
-        icon: 'pi pi-chart-bar',
-        command: () => {},
-        tooltipOptions: {
-          tooltipLabel: 'Grafica de Barras',
-        },
-      },
-      {
-        icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
-        command: () => {},
-        tooltipOptions: {
-          tooltipLabel: 'Grafica de Pastel',
-        },
-      },
-    ];
-  }
-
-  getProductos() {
-    this.productoService.getProductos().subscribe(
+  registrarProducto(){
+    this.productoService.postProducto(this.nombre).subscribe(
       (response) => {
-        console.log(response);
-        this.productos = response;
+        console.log(response)
+        this.getProductos();
+        this.hidenModal();
       },
       (error) => {
-        console.error('Error al obtener los productos:', error);
-        this.productos = [];
+        console.error('Error al obtener ventas:', error);
+      }
+    ); 
+  }
+
+  editProducto(id:number, idUnidad:number){
+    console.log(id)
+   // suponiendo que el ID está en la ruta
+      this.productoService.getProducto(id, idUnidad).subscribe(
+        (response) => {
+          console.log(response);
+          this.nombreEditar = response[0].nombre_producto;
+          this.idEditar = response[0].id_producto;
+          this.idUnidadEditar = response[0].id_unidad;
+          this.visible2 = true;
+        },
+        (error) => {
+          console.error('Error al obtener ventas:', error);
+        }
+      );
+  }
+
+  editarProducto(){
+    this.productoService.putProductos(this.idEditar, this.nombreEditar, this.idUnidadEditar).subscribe(
+      (response) => {
+        console.log(response);
+        this.nombreEditar = "";
+        this.idUnidadEditar = 0;
+        this.idEditar = 0;
+        this.visible2 = false;
+        this.getProductos();
+      },
+      (error) => {
+        console.error('Error al obtener ventas:', error);
       }
     );
   }
 
-  applyFilter() {
-    if (this.value) {
-      this.productos = this.productos.filter((productos: any) =>
-        productos.nombre_producto
-          .toLowerCase()
-          .includes(this.value.toLowerCase())
-      );
-    } else {
-      this.getProductos();
-    }
-  }
-
-
-
-
-
-  generarPDF(nombreTabla: string) {
-    let content: HTMLElement | null = document.getElementById(nombreTabla);
-
-    if (content) {
-      const paginador = content.querySelector('.paginador');
-      if (paginador && paginador instanceof HTMLElement) {
-        paginador.style.display = 'none';
+  eliminarProducto(id:number){
+    this.productoService.deleteProductos(id).subscribe(
+      (response) => {
+        console.log(response)
+        this.getProductos();
+        this.hidenModal();
+      },
+      (error) => {
+        console.error('Error al obtener ventas:', error);
       }
-
-      html2canvas(content).then((canvas) => {
-        if (paginador && paginador instanceof HTMLElement) {
-          paginador.style.display = 'block';
-        }
-
-        const imgData = canvas.toDataURL('image/png');
-
-        const pdf = new jsPDF({
-          orientation: 'landscape',
-          unit: 'mm',
-          format: 'a4',
-        });
-
-        const imgProps = pdf.getImageProperties(imgData);
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-        pdf.addImage(imgData, 'png', 0, 0, pdfWidth, pdfHeight);
-
-        pdf.save(`${nombreTabla}_reporte.pdf`);
-      });
-    }
+    );
   }
 
-  generarExcel(nombreTabla: string) {
-    let content: HTMLElement | null = document.getElementById(nombreTabla);
+  editMerma(id:number){
 
-    if (content) {
-      const wb = XLSX.utils.book_new();
-      const ws = XLSX.utils.table_to_sheet(content);
+  }
+  editarMerma(){}
 
-      XLSX.utils.book_append_sheet(wb, ws, 'Tabla');
+  eliminarMerma(id:number){
 
-      const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
-      const buf = new ArrayBuffer(wbout.length);
-      const view = new Uint8Array(buf);
+  }
 
-      for (let i = 0; i < wbout.length; i++) {
-        view[i] = wbout.charCodeAt(i) & 0xff;
+
+
+  registrarMateria(){
+    
+  }
+
+  editMateria(id:number){
+
+  }
+  editarMateria(){}
+
+  eliminarMateria(id:number){
+    this.productoService.deleteMaterias(id).subscribe(
+      (response) => {
+        console.log(response)
+        this.getMaterias();
+        this.visible5;
+      },
+      (error) => {
+        console.error('Error al obtener ventas:', error);
       }
-
-      const blob = new Blob([buf], { type: 'application/octet-stream' });
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.download = `${nombreTabla}_reporte.xlsx`;
-      link.click();
-    }
+    );
   }
+
 }
