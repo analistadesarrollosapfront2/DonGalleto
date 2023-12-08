@@ -1,77 +1,77 @@
 .buscador{
-    display: flex;
-    margin: .5%;
-    align-items: baseline;
-    justify-content: space-between;
-  }
-  
-  .tituloTabla{
-    font-family: 'Roboto', sans-serif;
-    font-weight: 700;
-    font-size: revert-layer;
-    margin-left: 5vw;
-  
-  }
-  
-  ::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
-    border-color: #814f28;
-  }
-  
-  ::ng-deep .p-datatable .p-sortable-column .p-highlight{
-    border-color: #814f28;
-  }
-  
-  :host ::ng-deep .p-speeddial-button.p-button.p-button-icon-only {
-    width: 2.5rem !important;
-    height: 2.5rem !important;
-    border-radius: 50% !important;
-    background-color: #814f28;
-    border: #814f28;
-  }
-  
-  :host ::ng-deep .p-speeddial-direction-right {
-    left: 0.5 !important;
-    top: calc(100% - 3rem) !important;
-  }
-  
-  :host ::ng-deep a {
-    text-decoration: none;
-    color: #814f28;
-    background-color: #f5cda2;
-  }
-  
-   ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-    background-color: #fbfbfb;
-  }
-  
-  
+  display: flex;
+  margin: .5%;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.tituloTabla{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: revert-layer;
+  margin-left: 5vw;
+
+}
+
+::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+  border-color: #814f28;
+}
+
+::ng-deep .p-datatable .p-sortable-column .p-highlight{
+  border-color: #814f28;
+}
+
+:host ::ng-deep .p-speeddial-button.p-button.p-button-icon-only {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  border-radius: 50% !important;
+  background-color: #814f28;
+  border: #814f28;
+}
+
+:host ::ng-deep .p-speeddial-direction-right {
+  left: 0.5 !important;
+  top: calc(100% - 3rem) !important;
+}
+
+:host ::ng-deep a {
+  text-decoration: none;
+  color: #814f28;
+  background-color: #f5cda2;
+}
+
+ ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background-color: #fbfbfb;
+}
+
+
+.card {
   .card {
-    .card {
-      padding: 20px;
-      margin: 20px;
-    }
-    
-    .p-field {
-      margin-bottom: 5px;
-    }
-    
-    .p-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    
-    .p-col-6 {
-      width: calc(50% - 5px);
-    }
-    
-    .p-field-full {
-      width: 100%;
-    }
-    
-    .p-inputtext {
-      width: calc(100% - 6px); /* Ajustar el tamaño del campo */
-      padding: 5px; /* Ajustar el relleno interno */
-      font-size: 14px; /* Tamaño de fuente */
-    }
-  }  
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .p-field {
+    margin-bottom: 5px;
+  }
+
+  .p-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .p-col-6 {
+    width: calc(50% - 5px);
+  }
+
+  .p-field-full {
+    width: 100%;
+  }
+
+  .p-inputtext {
+    width: calc(100% - 6px); /* Ajustar el tamaño del campo */
+    padding: 5px; /* Ajustar el relleno interno */
+    font-size: 14px; /* Tamaño de fuente */
+  }
+}

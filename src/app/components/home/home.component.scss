@@ -1,43 +1,68 @@
-::ng-deep .p-card .contenido{
-    margin:auto;
-    width: 100%;
-    height: 330px;
+
+::ng-deep .p-selectbutton .p-button.p-highlight {
+  background: #814f28;
+  border-color: #814f28;
+  color: #fdfdfd;
+}
+::ng-deep .p-card .contenido {
+  margin: auto;
+  width: 100%;
+  height: 330px;
 }
 
-.contenido{
-    justify-content: center;
-    text-align: center;
+.contenido {
+  padding: 1.5em;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background-color: #ececec;
 }
 
-.imgProduct{
-    width: 50%;
-    height: 100px;
+.imgProduct {
+  width: 100%;
+  height: 15vh;
 }
 
-::ng-deep .p-card .p-card-content{
-    padding-top: 0;
-    padding-bottom: 0;
+::ng-deep .p-card .p-card-content {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
-::ng-deep .p-component, .p-component *{
-    margin: auto;
-    margin-top: 1%;
+::ng-deep .p-component,
+.p-component * {
+  margin: auto;
+  margin-top: 1%;
 }
 
-::ng-deep .p-card .p-card-footer{
-    padding-top: 0%;
+::ng-deep .p-card .p-card-footer {
+  padding-top: 0%;
 }
 
-.productName{
-    width: 100%;
-    height: 50px;
+::ng-deep .p-button.p-button-text {
+  background-color: transparent;
+  color: #814f28;
+  border-color: transparent;
 }
 
-.name{
-    font-style: normal;
-    font-family: cursive;
+.productName {
+  width: 100%;
+  height: 60px;
 }
 
-h2{
-    font-size: 1rem;
+.name {
+  font-style: normal;
+
+}
+
+
+
+.titulo{
+  background-color: #fdfdfd;
+  color: #814f28;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 2rem;
 }
