@@ -94,6 +94,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DropdownModule,
     MultiSelectModule,
     ImageModule,
+
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

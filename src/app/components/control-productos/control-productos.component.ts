@@ -1,46 +1,52 @@
-import { Component } from '@angular/core';
 import { ControlProductosService } from 'src/app/service/control-productos/control-productos.service';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+// import * as jsPDF from 'jspdf';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-control-productos',
   templateUrl: './control-productos.component.html',
-  styleUrls: ['./control-productos.component.scss']
+  styleUrls: ['./control-productos.component.scss'],
 })
 export class ControlProductosComponent {
   // Productos
   value: any | undefined;
   items: any[] = [];
   productos: any[] = [];
-// MateriaPrima
-value2: any | undefined;
-items2: any[] = [];
-materias: any[] = [];
-// Mermas
-value3: any | undefined;
-items3: any[] = [];
-mermas: any[] = [];
+  // MateriaPrima
+  value2: any | undefined;
+  items2: any[] = [];
+  materias: any[] = [];
+  // Mermas
+  value3: any | undefined;
+  items3: any[] = [];
+  mermas: any[] = [];
 
-  constructor(
-    private productoService: ControlProductosService,
-  ) { }
+  constructor(private productoService: ControlProductosService) {}
 
+  @ViewChild('materiasTable', { static: false }) materiasTable!: ElementRef;
+  @ViewChild('mermasTable', { static: false }) mermasTable!: ElementRef;
+  @ViewChild('productosTable', { static: false }) productosTable!: ElementRef;
 
   ngOnInit() {
-    this.getProductos();
-    this.configureItemsP();
     this.getMaterias();
-    this.configureItemsMP();
+    this.configureItemsMaterial();
 
     this.getMermas();
-    this.configureItemsM();
+    this.configureItemsMermas();
+
+    this.getProductos();
+    this.configureItemsProducto();
   }
 
-  configureItemsP() {
+  configureItemsMaterial() {
     this.items = [
       {
         icon: 'pi pi-book',
         command: () => {
-          console.log('Habrir ');
+          console.log('Habrir Material ');
+          this.generarPDF('materias');
         },
         tooltipOptions: {
           tooltipLabel: 'Reporte',
@@ -48,67 +54,14 @@ mermas: any[] = [];
       },
       {
         icon: 'pi pi-chart-bar',
-        command: () => { },
+        command: () => {},
         tooltipOptions: {
           tooltipLabel: 'Grafica de Barras',
         },
       },
       {
         icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
-        command: () => { },
-        tooltipOptions: {
-          tooltipLabel: 'Grafica de Pastel',
-        },
-      },
-    ];
-  }
-
-  getProductos() {
-    this.productoService.getProductos().subscribe(
-      (response) => {
-        console.log(response)
-        this.productos = response;
-      },
-      (error) => {
-        console.error('Error al obtener los productos:', error);
-        this.productos = [];
-      }
-    );
-  }
-
-  applyFilter() {
-    if (this.value) {
-      this.productos = this.productos.filter((productos: any) =>
-      productos.nombre_producto.toLowerCase().includes(this.value.toLowerCase())
-    );
-
-    } else {
-      this.getProductos();
-    }
-  }
-
-
-  configureItemsMP() {
-    this.items2 = [
-      {
-        icon: 'pi pi-book',
-        command: () => {
-          console.log('Habrir ');
-        },
-        tooltipOptions: {
-          tooltipLabel: 'Reporte',
-        },
-      },
-      {
-        icon: 'pi pi-chart-bar',
-        command: () => { },
-        tooltipOptions: {
-          tooltipLabel: 'Grafica de Barras',
-        },
-      },
-      {
-        icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
-        command: () => { },
+        command: () => {},
         tooltipOptions: {
           tooltipLabel: 'Grafica de Pastel',
         },
@@ -119,9 +72,8 @@ mermas: any[] = [];
   getMaterias() {
     this.productoService.getMaterias().subscribe(
       (response) => {
-        console.log(response)
+        console.log(response);
         this.materias = response;
-        this.configureItemsMP();
       },
       (error) => {
         console.error('Error al obtener las materias primas:', error);
@@ -140,14 +92,13 @@ mermas: any[] = [];
     }
   }
 
-
-
-  configureItemsM() {
-    this.items = [
+  configureItemsMermas() {
+    this.items2 = [
       {
         icon: 'pi pi-book',
         command: () => {
-          console.log('Habrir ');
+          console.log('Habrir Mermas');
+          this.generarPDF('mermas');
         },
         tooltipOptions: {
           tooltipLabel: 'Reporte',
@@ -155,14 +106,14 @@ mermas: any[] = [];
       },
       {
         icon: 'pi pi-chart-bar',
-        command: () => { },
+        command: () => {},
         tooltipOptions: {
           tooltipLabel: 'Grafica de Barras',
         },
       },
       {
         icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
-        command: () => { },
+        command: () => {},
         tooltipOptions: {
           tooltipLabel: 'Grafica de Pastel',
         },
@@ -173,7 +124,7 @@ mermas: any[] = [];
   getMermas() {
     this.productoService.getMermas().subscribe(
       (response) => {
-        console.log(response)
+        console.log(response);
         this.mermas = response;
       },
       (error) => {
@@ -186,12 +137,91 @@ mermas: any[] = [];
   applyFilter3() {
     if (this.value) {
       this.mermas = this.mermas.filter((mermas: any) =>
-      mermas.nombre.toLowerCase().includes(this.value.toLowerCase())
-    );
-
+        mermas.nombre.toLowerCase().includes(this.value.toLowerCase())
+      );
     } else {
       this.getMermas();
     }
   }
 
+  configureItemsProducto() {
+    this.items3 = [
+      {
+        icon: 'pi pi-book',
+        command: () => {
+          this.generarPDF('productos');
+          console.log(' productos');
+        },
+        tooltipOptions: {
+          tooltipLabel: 'Reporte',
+        },
+      },
+      {
+        icon: 'pi pi-chart-bar',
+        command: () => {},
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Barras',
+        },
+      },
+      {
+        icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
+        command: () => {},
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Pastel',
+        },
+      },
+    ];
+  }
+
+  getProductos() {
+    this.productoService.getProductos().subscribe(
+      (response) => {
+        console.log(response);
+        this.productos = response;
+      },
+      (error) => {
+        console.error('Error al obtener los productos:', error);
+        this.productos = [];
+      }
+    );
+  }
+
+  applyFilter() {
+    if (this.value) {
+      this.productos = this.productos.filter((productos: any) =>
+        productos.nombre_producto
+          .toLowerCase()
+          .includes(this.value.toLowerCase())
+      );
+    } else {
+      this.getProductos();
+    }
+  }
+
+  generarPDF(nombreTabla: string) {
+    let content: HTMLElement | null = document.getElementById(nombreTabla);
+
+    if (content) {
+      html2canvas(content).then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+
+        // Ajustamos el tamaño del PDF
+        const pdf = new jsPDF({
+          orientation: 'landscape',
+          unit: 'mm',
+          format: 'a4',
+        });
+
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+        // Agregamos la imagen al PDF
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+        // Descargamos el PDF
+        pdf.save(`${nombreTabla}_reporte.pdf`);
+      });
+    }
+  }
 }

@@ -5,11 +5,13 @@
         <div class="buscador">
           <h2 class="tituloTabla">Materias Primas</h2>
           <span class="p-input-icon-left">
-              <i class="pi pi-search"></i>
-              <input style="border-radius: 20px;" type="text" placeholder="Buscar" pInputText [(ngModel)]="value2" (input)="applyFilter2()" />
-            </span>
+            <i class="pi pi-search"></i>
+            <input style="border-radius: 20px;" type="text" placeholder="Buscar" pInputText [(ngModel)]="value2"
+              (input)="applyFilter2()" />
+          </span>
         </div>
-        <p-table  [value]="materias" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+        <div class="card">
+          <p-table id="materias" [value]="materias" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
             [tableStyle]="{ 'min-width': '50rem' }"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
             [rowsPerPageOptions]="[5, 10, 20]">
@@ -17,13 +19,15 @@
             <ng-template pTemplate="header">
 
               <tr>
-        <th pSortableColumn="id" style="width:20%">#<p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="id" style="width:20%">#<p-sortIcon field="id"></p-sortIcon></th>
                 <th pSortableColumn="nombre" style="width:20%">Nombre <p-sortIcon field="id_producto"></p-sortIcon></th>
                 <th pSortableColumn="costo" style="width:20%">Costo <p-sortIcon field="cantidad"></p-sortIcon></th>
                 <th pSortableColumn="stock" style="width:20%">Stock <p-sortIcon field="nombre"></p-sortIcon></th>
-                <th pSortableColumn="nombre_unidad" style="width:20%">Unidad <p-sortIcon field="precio_unitario"></p-sortIcon></th>
+                <th pSortableColumn="nombre_unidad" style="width:20%">Unidad <p-sortIcon
+                    field="precio_unitario"></p-sortIcon></th>
 
-                <th pSortableColumn="" style="width:20%">Fecha de modificacion<p-sortIcon field="total"></p-sortIcon></th>
+                <th pSortableColumn="" style="width:20%">Fecha de modificacion<p-sortIcon field="total"></p-sortIcon>
+                </th>
 
               </tr>
             </ng-template>
@@ -37,10 +41,11 @@
               </tr>
             </ng-template>
             <ng-template pTemplate="paginatorleft">
-              <p-speedDial [model]="items2" direction="right"></p-speedDial>
+              <p-speedDial [model]="items" direction="right"></p-speedDial>
             </ng-template>
             <ng-template pTemplate="paginatorright"></ng-template>
           </p-table>
+        </div>
       </div>
     </p-tabPanel>
 
@@ -49,44 +54,48 @@
         <div class="buscador">
           <h2 class="tituloTabla">Mermas</h2>
           <span class="p-input-icon-left">
-              <i class="pi pi-search"></i>
-              <input style="border-radius: 20px;" type="text" placeholder="Buscar" pInputText [(ngModel)]="value" (input)="applyFilter3()" />
-            </span>
+            <i class="pi pi-search"></i>
+            <input style="border-radius: 20px;" type="text" placeholder="Buscar" pInputText [(ngModel)]="value"
+              (input)="applyFilter3()" />
+          </span>
         </div>
-        <p-table  [value]="mermas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
-            [tableStyle]="{ 'min-width': '50rem' }"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [rowsPerPageOptions]="[5, 10, 20]">
+        <p-table id="mermas" [value]="mermas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+          [tableStyle]="{ 'min-width': '50rem' }"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [rowsPerPageOptions]="[5, 10, 20]">
 
-            <ng-template pTemplate="header">
+          <ng-template pTemplate="header">
 
-              <tr>
+            <tr>
 
-                <th pSortableColumn="nombre" style="width:20%">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
-                <th pSortableColumn="cantidad" style="width:20%">Monto de merma <p-sortIcon field="cantidad"></p-sortIcon></th>
-                <th pSortableColumn="nombre_unidad" style="width:20%">Unidad de Merma <p-sortIcon field="nombre_unidad"></p-sortIcon></th>
-                <th pSortableColumn="precio_unitario" style="width:20%">Motivo <p-sortIcon field="precio_unitario"></p-sortIcon></th>
+              <th pSortableColumn="nombre" style="width:20%">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
+              <th pSortableColumn="cantidad" style="width:20%">Monto de merma <p-sortIcon field="cantidad"></p-sortIcon>
+              </th>
+              <th pSortableColumn="nombre_unidad" style="width:20%">Unidad de Merma <p-sortIcon
+                  field="nombre_unidad"></p-sortIcon></th>
+              <th pSortableColumn="precio_unitario" style="width:20%">Motivo <p-sortIcon
+                  field="precio_unitario"></p-sortIcon></th>
 
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-mermas>
-              <tr>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-mermas>
+            <tr>
 
-                <td>{{mermas.nombre  }}</td>
-                <td>{{ mermas.cantidad }}</td>
-                <td>{{ mermas.nombre_unidad }}</td>
-                <td>{{ mermas.precio_unitario }}</td>
+              <td>{{mermas.nombre }}</td>
+              <td>{{ mermas.cantidad }}</td>
+              <td>{{ mermas.nombre_unidad }}</td>
+              <td>{{ mermas.precio_unitario }}</td>
 
 
-              </tr>
-            </ng-template>
+            </tr>
+          </ng-template>
 
-            <ng-template pTemplate="paginatorleft">
-              <p-speedDial [model]="items" direction="right"></p-speedDial>
+          <ng-template pTemplate="paginatorleft">
+            <p-speedDial [model]="items2" direction="right"></p-speedDial>
 
-            </ng-template>
-            <ng-template pTemplate="paginatorright"></ng-template>
-          </p-table>
+          </ng-template>
+          <ng-template pTemplate="paginatorright"></ng-template>
+        </p-table>
 
       </div>
     </p-tabPanel>
@@ -102,7 +111,7 @@
               (input)="applyFilter()" />
           </span>
         </div>
-        <p-table [value]="productos" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+        <p-table id="productos" [value]="productos" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
           [tableStyle]="{ 'min-width': '50rem' }"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [rowsPerPageOptions]="[5, 10, 20]">
@@ -128,7 +137,7 @@
             </tr>
           </ng-template>
           <ng-template pTemplate="paginatorleft">
-            <p-speedDial [model]="items" direction="right"></p-speedDial>
+            <p-speedDial [model]="items3" direction="right"></p-speedDial>
           </ng-template>
           <ng-template pTemplate="paginatorright"></ng-template>
         </p-table>

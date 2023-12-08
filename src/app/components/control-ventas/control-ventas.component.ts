@@ -32,7 +32,8 @@ export class ControlVentasComponent implements OnInit {
   diasVisitaOptions: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
   selectedProductos: string[] = [];
   selectedDiasVisita: string[] = [];
-
+  value3: any | undefined;
+  items3: any[] = [];
   constructor(
     private ventasService: ControlVentasService,
     private messageService: MessageService
@@ -44,6 +45,7 @@ export class ControlVentasComponent implements OnInit {
     this.configureItemsV();
     this.getUtilidades();
     this.configureItemsU();
+    this.configureItemsProv();
   }
 
   configureItemsV() {
@@ -51,7 +53,7 @@ export class ControlVentasComponent implements OnInit {
       {
         icon: 'pi pi-book',
         command: () => {
-          console.log('Habrir ');
+          console.log('Habrir V');
         },
         tooltipOptions: {
           tooltipLabel: 'Reporte',
@@ -175,6 +177,34 @@ export class ControlVentasComponent implements OnInit {
     );
   }
 
+
+  configureItemsProv() {
+    this.items3 = [
+      {
+        icon: 'pi pi-book',
+        command: () => {
+          console.log('Habrir Proveedor');
+        },
+        tooltipOptions: {
+          tooltipLabel: 'Reporte',
+        },
+      },
+      {
+        icon: 'pi pi-chart-bar',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Barras',
+        },
+      },
+      {
+        icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Pastel',
+        },
+      },
+    ];
+  }
   guardar() {
     console.log('Datos guardados:', this.proveedor, this.nombre, this.telefono, this.email, this.colonia, this.calle, this.numero, this.selectedProductos, this.selectedDiasVisita);
   }
