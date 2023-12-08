@@ -149,14 +149,20 @@
             <label for="numero">Número</label>
             <input id="numero" type="text" [(ngModel)]="numero" class="p-inputtext">
           </div>
-          <div class="p-field-full">
+          <div class="p-field">
             <label for="productos">Productos</label>
-            <p-dropdown id="productos" [options]="productosOptions" [(ngModel)]="productos" placeholder="Seleccionar" ></p-dropdown>
+            <p-multiSelect [options]="productosOptions" [(ngModel)]="selectedProductos"
+              defaultLabel="Seleccione los productos"></p-multiSelect>
           </div>
-          <div class="p-field-full">
+
+          <div class="p-field">
             <label for="diasVisita">Días de Visita</label>
-            <p-dropdown id="diasVisita" [options]="diasVisitaOptions" [(ngModel)]="diasVisita" placeholder="Seleccionar" ></p-dropdown>
+            <p-multiSelect [options]="diasVisitaOptions" [(ngModel)]="selectedDiasVisita"
+              defaultLabel="Seleccione los días de visita"></p-multiSelect>
           </div>
+
+
+
         </div>
         <div class="p-grid p-justify-end">
           <div class="p-col">
@@ -167,9 +173,9 @@
           </div>
         </div>
       </div>
-      
-      
-      
+
+
+
     </p-tabPanel>
   </p-tabView>
 </div>

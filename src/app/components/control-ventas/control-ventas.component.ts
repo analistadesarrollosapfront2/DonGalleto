@@ -18,7 +18,7 @@ export class ControlVentasComponent implements OnInit {
   value2: any | undefined;
   items2: any[] = [];
   //Proveedor
-  proveedor: string = ''; 
+  proveedor: string = '';
   nombre: string = '';
   telefono: string = '';
   email: string = '';
@@ -27,13 +27,15 @@ export class ControlVentasComponent implements OnInit {
   numero: string = '';
   productos: string = '';
   diasVisita: string = '';
-  productosOptions: string[] = ['Producto 1', 'Producto 2', 'Producto 3']; 
-  diasVisitaOptions: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']; 
+  productosOptions: string[] = ['Producto 1', 'Producto 2', 'Producto 3'];
+  diasVisitaOptions: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+  selectedProductos: string[] = [];
+  selectedDiasVisita: string[] = [];
 
   constructor(
     private ventasService: ControlVentasService,
     private messageService: MessageService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getVentas();
@@ -55,14 +57,14 @@ export class ControlVentasComponent implements OnInit {
       },
       {
         icon: 'pi pi-chart-bar',
-        command: () => {},
+        command: () => { },
         tooltipOptions: {
           tooltipLabel: 'Grafica de Barras',
         },
       },
       {
         icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
-        command: () => {},
+        command: () => { },
         tooltipOptions: {
           tooltipLabel: 'Grafica de Pastel',
         },
@@ -119,14 +121,14 @@ export class ControlVentasComponent implements OnInit {
       },
       {
         icon: 'pi pi-chart-bar',
-        command: () => {},
+        command: () => { },
         tooltipOptions: {
           tooltipLabel: 'Grafica de Barras',
         },
       },
       {
         icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
-        command: () => {},
+        command: () => { },
         tooltipOptions: {
           tooltipLabel: 'Grafica de Pastel',
         },
@@ -149,16 +151,13 @@ export class ControlVentasComponent implements OnInit {
   }
 
 
-
-
   guardar() {
- 
-    console.log('Datos guardados:', this.proveedor, this.nombre, this.telefono, this.email, this.colonia, this.calle, this.numero, this.productos, this.diasVisita);
+    console.log('Datos guardados:', this.proveedor, this.nombre, this.telefono, this.email, this.colonia, this.calle, this.numero, this.selectedProductos, this.selectedDiasVisita);
   }
-
 
   modificar() {
- 
+
   }
-  
+
+
 }

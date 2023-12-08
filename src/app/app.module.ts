@@ -42,7 +42,7 @@ import { RegistroLoginComponent } from './components/login/registro-login/regist
 import { RecuperacionLoginComponent } from './components/login/recuperacion-login/recuperacion-login.component';
 import { ControlVentasComponent } from './components/control-ventas/control-ventas.component';
 import { DropdownModule } from 'primeng/dropdown';
-
+import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,6 +85,7 @@ import { DropdownModule } from 'primeng/dropdown';
     CheckboxModule,
     SpeedDialModule,
     DropdownModule,
+    MultiSelectModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
