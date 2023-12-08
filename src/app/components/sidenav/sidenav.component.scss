@@ -1,51 +1,99 @@
 @import "primeicons/primeicons.css";
 
-.menu {
-    position: relative;
-  }
-
-  ::ng-deep .p-sidebar-header {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-evenly;
+i{
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
-  .sidebar-toggle-button {
-    position: absolute;
-    z-index: 2;
-    transform: scale(0.6);
-    margin: -15px;
-  }
+.menu {
+  position: relative;
+
+}
+
+#img-logo{
+  padding:0px 20px 0px 20px;
+  width: 100%;
+  height: auto;
+
+}
+
+::ng-deep .p-sidebar{
+  background-color: #b27b4b;
+}
+
+::ng-deep .p-sidebar-header {
+  vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  background-color: #f0f0f0;
+  margin-bottom: 20px;
+}
 
 
-  :host ::ng-deep [type=button]:not(:disabled)
-   {
-      cursor: pointer;
-      background-color: #b27b4b;
-      border-color: #814f28;
-  }
+.sidebar-toggle-button {
+//
+}
 
-  ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  li {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-
-  li:hover {
-    background-color: #f0f0f0;
-    transform: translateX(5px);
-  }
+ ::ng-deep .p-sidebar .p-sidebar-content {
+  overflow: hidden;
+  padding: 0rem;
+  padding-right: 2rem;
+}
 
 
-  li:hover mat-icon {
-    transform: translateX(2px);
-  }
+::ng-deep .p-sidebar .p-sidebar-footer{
+  padding-left: 0px;
+  padding-bottom: 0px;
+}
+
+:host ::ng-deep [type=button]:not(:disabled) {
+  cursor: pointer;
+  background-color: rgba($color: #000000, $alpha: 0.0);
+  border-color: #814f28;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+a{
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  color: #f0f0f0;
+  padding: 10px 20px;
+}
+
+li:hover a{
+  text-decoration: none;
+  color: #814f28;
+
+}
+
+li {
+  width: 100%;
+  align-items: center;
+  list-style: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  color: #f0f0f0 ;
+  text-decoration: none;
+}
+
+li:hover {
+  background-color: #f0f0f0;
+  color: #814f28;
+  transform: translateX(5px);
+}
+
+
+li:hover mat-icon {
+  transform: translateX(2px);
+}
