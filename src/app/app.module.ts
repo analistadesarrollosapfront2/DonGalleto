@@ -19,6 +19,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { DialogModule } from 'primeng/dialog';
+import { ImageModule } from 'primeng/image';
 
 
 // Material
@@ -92,6 +93,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DialogModule,
     DropdownModule,
     MultiSelectModule,
+    ImageModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
