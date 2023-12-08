@@ -18,13 +18,12 @@
 
             <tr>
               <th style="width:5%"></th>
-              <th pSortableColumn="id_producto" style="width:20%">ID Producto <p-sortIcon field="id_producto"></p-sortIcon></th>
-              <th pSortableColumn="cantidad" style="width:20%">Cantidad <p-sortIcon field="cantidad"></p-sortIcon></th>
+              <!-- <th pSortableColumn="id_producto" style="width:20%">ID Producto <p-sortIcon field="id_producto"></p-sortIcon></th> -->
               <th pSortableColumn="nombre" style="width:20%">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
-              <th pSortableColumn="precio_unitario" style="width:20%">Precio Unitario <p-sortIcon field="precio_unitario"></p-sortIcon>
-              </th>
-              <th pSortableColumn="subtotal " style="width:20%">Subtotal <p-sortIcon field="subtotal"></p-sortIcon></th>
+              <th pSortableColumn="cantidad" style="width:20%">Cantidad <p-sortIcon field="cantidad"></p-sortIcon></th>
+              <th pSortableColumn="unidad" style="width:20%">Unidad Venta <p-sortIcon field="cantidad"></p-sortIcon></th>
               <th pSortableColumn="total" style="width:20%">Total <p-sortIcon field="total"></p-sortIcon></th>
+              <th pSortableColumn="fecha" style="width:20%">Fecha Venta <p-sortIcon field="cantidad"></p-sortIcon></th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-venta>
@@ -33,13 +32,16 @@
                 <p-checkbox name="ventas" [(ngModel)]="selectedVentas" [value]="venta.id_producto"
                   inputId="venta.id_producto"></p-checkbox>
               </td>
-              <td>{{ venta.id_producto }}</td>
+              <!-- <td>{{ venta.id_producto }}</td> -->
+              <td>{{ venta.nombre_producto }}</td>
               <td>{{ venta.cantidad }}</td>
-              <td>{{ venta.nombre }}</td>
-              <td>{{ venta.precio_unitario }}</td>
+              <td>{{ venta.nombre_unidad }}</td>
+              <td>{{ venta.total }}</td>
+              <td>{{ formatearFecha(venta.fecha_venta) }}</td>
 
-              <td>{{ calculateSubtotal(venta) }}</td>
-              <td>{{ calculateTotal(venta) }}</td>
+
+              <!-- <td>{{ calculateSubtotal(venta) }}</td>
+              <td>{{ calculateTotal(venta) }}</td> -->
             </tr>
           </ng-template>
 
@@ -105,13 +107,45 @@
       </div>
     </p-tabPanel>
     <p-tabPanel header="Proveedores">
-      <p>
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-        corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in
-        culpa
-        qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et
-        expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
-      </p>
+      <p-table  [value]="proveedores" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+          [tableStyle]="{ 'min-width': '50rem' }"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [rowsPerPageOptions]="[5, 10, 20]">
+
+          <ng-template pTemplate="header">
+
+            <tr>
+
+              <th pSortableColumn="id_producto" style="width:20%">Monto de venta <p-sortIcon field="id_producto"></p-sortIcon></th>
+              <th pSortableColumn="cantidad" style="width:20%">Monto de merma <p-sortIcon field="cantidad"></p-sortIcon></th>
+              <th pSortableColumn="nombre" style="width:20%">Monto de materias primas <p-sortIcon field="nombre"></p-sortIcon></th>
+              <th pSortableColumn="precio_unitario" style="width:20%">Monto de gastos de servicios <p-sortIcon field="precio_unitario"></p-sortIcon>
+              </th>
+              <th pSortableColumn="subtotal " style="width:20%">Utilidades minimas para rentabilidad <p-sortIcon field="subtotal"></p-sortIcon></th>
+              <th pSortableColumn="total" style="width:20%">Total diario  <p-sortIcon field="total"></p-sortIcon></th>
+              <!-- <th pSortableColumn="total" style="width:20%">Total semanal  <p-sortIcon field="total"></p-sortIcon></th>
+              <th pSortableColumn="total" style="width:20%">Total mensual  <p-sortIcon field="total"></p-sortIcon></th> -->
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-proveedor>
+            <tr>
+
+              <td>{{ proveedor.id }}</td>
+              <td>{{ proveedor.nombre_proveedor }}</td>
+              <td>{{ proveedor.direccion }}</td>
+              <td>{{ proveedor.telefono }}</td>
+
+              <!-- <td>{{ calculateSubtotal(proveedores) }}</td>
+              <td>{{ calculateTotal(proveedores) }}</td> -->
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="paginatorleft">
+            <p-speedDial [model]="items" direction="right"></p-speedDial>
+
+          </ng-template>
+          <ng-template pTemplate="paginatorright"></ng-template>
+        </p-table>
     </p-tabPanel>
   </p-tabView>
 </div>

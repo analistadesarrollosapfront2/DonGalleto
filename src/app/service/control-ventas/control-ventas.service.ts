@@ -8,71 +8,6 @@ import { Observable, of } from 'rxjs';
 export class ControlVentasService {
   constructor(private http: HttpClient) {}
 
-  getVentasData() {
-    return[
-    {
-      "id_producto": 1,
-      "nombre": "Galleta de chispas de chocolate",
-      "cantidad": 5,
-      "precio_unitario": 19
-    },
-    {
-      "id_producto": 2,
-      "nombre": "Galleta de chocolate",
-      "cantidad": 10,
-      "precio_unitario": 20
-    },
-    {
-      "id_producto": 3,
-      "nombre": "Galleta de naranja",
-      "cantidad": 8,
-      "precio_unitario": 21
-    },
-    {
-      "id_producto": 4,
-      "nombre": "Galleta de coco",
-      "cantidad": 3,
-      "precio_unitario": 22
-    },
-    {
-      "id_producto": 5,
-      "nombre": "Galleta de nuez",
-      "cantidad": 7,
-      "precio_unitario": 23
-    },{
-      "id_producto": 6,
-      "nombre": "Muffin de arándanos",
-      "cantidad": 4,
-      "precio_unitario": 17
-    },
-    {
-      "id_producto": 7,
-      "nombre": "Tartaleta de fresa",
-      "cantidad": 6,
-      "precio_unitario": 18
-    },
-    {
-      "id_producto": 8,
-      "nombre": "Palmera de chocolate",
-      "cantidad": 9,
-      "precio_unitario": 16
-    },
-    {
-      "id_producto": 9,
-      "nombre": "Croissant de almendra",
-      "cantidad": 5,
-      "precio_unitario": 15
-    },
-    {
-      "id_producto": 10,
-      "nombre": "Barrita de avena y miel",
-      "cantidad": 12,
-      "precio_unitario": 14
-    }
-  ]
-  }
-
-
   getUtilidadesData(){
     return[
       {
@@ -156,22 +91,104 @@ export class ControlVentasService {
         "utilidades_rentabilidad": 240
       }
     ]
-
   }
 
-
-  getVentas(): Observable<any[]> {
-    return of(this.getVentasData());
+  getProveedoresData(){
+    return [
+      {
+        "id": "1",
+        "nombre_proveedor": "Proveedor A",
+        "direccion": "Calle A, Ciudad",
+        "telefono": "111-111-1111",
+        "correo_electronico": "proveedora@ejemplo.com",
+        "lista_productos": [
+          {"producto_id": "pa1", "nombre_producto": "Producto A1", "precio": 19.99},
+          {"producto_id": "pa2", "nombre_producto": "Producto A2", "precio": 29.99},
+          {"producto_id": "pa3", "nombre_producto": "Producto A3", "precio": 14.99}
+        ],
+        "dias_visita": ["Lunes", "Miércoles", "Viernes"]
+      },
+      {
+        "id": "2",
+        "nombre_proveedor": "Proveedor B",
+        "direccion": "Calle B, Ciudad",
+        "telefono": "222-222-2222",
+        "correo_electronico": "proveedorb@ejemplo.com",
+        "lista_productos": [
+          {"producto_id": "pb1", "nombre_producto": "Producto B1", "precio": 24.99},
+          {"producto_id": "pb2", "nombre_producto": "Producto B2", "precio": 34.99},
+          {"producto_id": "pb3", "nombre_producto": "Producto B3", "precio": 17.99}
+        ],
+        "dias_visita": ["Martes", "Jueves", "Sábado"]
+      },
+      {
+        "id": "3",
+        "nombre_proveedor": "Proveedor C",
+        "direccion": "Calle C, Ciudad",
+        "telefono": "333-333-3333",
+        "correo_electronico": "proveedorc@ejemplo.com",
+        "lista_productos": [
+          {"producto_id": "pc1", "nombre_producto": "Producto C1", "precio": 21.99},
+          {"producto_id": "pc2", "nombre_producto": "Producto C2", "precio": 31.99},
+          {"producto_id": "pc3", "nombre_producto": "Producto C3", "precio": 15.99}
+        ],
+        "dias_visita": ["Lunes", "Miércoles", "Viernes"]
+      },
+      {
+        "id": "4",
+        "nombre_proveedor": "Proveedor D",
+        "direccion": "Calle D, Ciudad",
+        "telefono": "444-444-4444",
+        "correo_electronico": "proveedord@ejemplo.com",
+        "lista_productos": [
+          {"producto_id": "pd1", "nombre_producto": "Producto D1", "precio": 18.99},
+          {"producto_id": "pd2", "nombre_producto": "Producto D2", "precio": 28.99},
+          {"producto_id": "pd3", "nombre_producto": "Producto D3", "precio": 12.99}
+        ],
+        "dias_visita": ["Martes", "Jueves", "Sábado"]
+      },
+      {
+        "id": "5",
+        "nombre_proveedor": "Proveedor E",
+        "direccion": "Calle E, Ciudad",
+        "telefono": "555-555-5555",
+        "correo_electronico": "proveedore@ejemplo.com",
+        "lista_productos": [
+          {"producto_id": "pe1", "nombre_producto": "Producto E1", "precio": 23.99},
+          {"producto_id": "pe2", "nombre_producto": "Producto E2", "precio": 33.99},
+          {"producto_id": "pe3", "nombre_producto": "Producto E3", "precio": 16.99}
+        ],
+        "dias_visita": ["Lunes", "Miércoles", "Viernes"]
+      },
+      {
+        "id": "6",
+        "nombre_proveedor": "Proveedor F",
+        "direccion": "Calle F, Ciudad",
+        "telefono": "666-666-6666",
+        "correo_electronico": "proveedorf@ejemplo.com",
+        "lista_productos": [
+          {"producto_id": "pf1", "nombre_producto": "Producto F1", "precio": 22.99},
+          {"producto_id": "pf2", "nombre_producto": "Producto F2", "precio": 32.99},
+          {"producto_id": "pf3", "nombre_producto": "Producto F3", "precio": 14.99}
+        ],
+        "dias_visita": ["Martes", "Jueves", "Sábado"]
+      }
+    ]
+    
   }
 
-  // getVentas() {
-  //   const url = 'http://localhost:3000/api/productos/ventas/';
-  //   return this.http.get<any>(url);
-  // }
+  getVentas() {
+    const url = 'http://localhost:3000/api/productos/ventas/';
+    return this.http.get<any>(url);
+  }
 
 
   getUtilidades(): Observable<any[]> {
     return of(this.getUtilidadesData());
+  }
+
+  getProveedores(): Observable<any[]>{
+    return of(this.getProveedoresData());
   }
 
   // getUtilidades() {

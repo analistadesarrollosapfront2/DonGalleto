@@ -10,6 +10,7 @@ import { ControlVentasService } from 'src/app/service/control-ventas/control-ven
 export class ControlVentasComponent implements OnInit {
   // Ventas
   ventas: any[] = [];
+  proveedores: any[] = [];
   selectedVentas: string[] = [];
   value: any | undefined;
   items: any[] = [];
@@ -24,6 +25,7 @@ export class ControlVentasComponent implements OnInit {
 
   ngOnInit() {
     this.getVentas();
+    this.getProveedores();
     this.configureItemsV();
   }
 
@@ -58,6 +60,7 @@ export class ControlVentasComponent implements OnInit {
   getVentas() {
     this.ventasService.getVentas().subscribe(
       (response) => {
+        console.log(response)
         this.ventas = response;
       },
       (error) => {
@@ -77,6 +80,16 @@ export class ControlVentasComponent implements OnInit {
     const iva = subtotal * 0.16;
     const total = subtotal + iva;
     return total;
+  }
+
+  formatearFecha(fecha: string){
+    const fechaDate: Date = new Date(fecha);
+    const opciones: object = { day: '2-digit', month: '2-digit', year: 'numeric' };
+
+    // Formatear la fecha al formato de México
+    const fechaFormateada = fechaDate.toLocaleDateString('es-MX', opciones);
+
+    return fechaFormateada;
   }
 
   applyFilter() {
@@ -101,6 +114,18 @@ export class ControlVentasComponent implements OnInit {
       (error) => {
         console.error('Error al obtener ventas:', error);
         this.utilidades = [];
+      }
+    );
+  }
+
+  getProveedores() {
+    this.ventasService.getProveedores().subscribe(
+      (response) => {
+        this.proveedores = response;
+      },
+      (error) => {
+        console.error('Error al obtener ventas:', error);
+        this.proveedores = [];
       }
     );
   }
