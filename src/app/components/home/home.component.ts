@@ -9,11 +9,14 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  public arrayProducts!: any[];
   constructor(private authServiceService: AuthServiceService,){}
   ngOnInit(): void {
     this.authServiceService.obtenerProductos().subscribe(
       (response) => {
         console.log(response);
+        this.arrayProducts = response;
       },
       (error) => {
         console.error('Error al iniciar sesión', error);

@@ -1,11 +1,40 @@
 ::ng-deep .p-card .contenido{
     margin:auto;
-    margin-top: 5%;
-    width: 95%;
+    width: 100%;
     height: 330px;
 }
 
 .contenido{
     justify-content: center;
     text-align: center;
+}
+
+.imgProduct{
+    width: 50%;
+    height: 100px;
+}
+
+::ng-deep .p-card .p-card-content{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+::ng-deep .p-component, .p-component *{
+    width: 80%;
+    margin: auto;
+    margin-top: 1%;
+}
+
+::ng-deep .p-card .p-card-footer{
+    padding-top: 0%;
+}
+
+.productName{
+    width: 100%;
+    height: 50px;
+}
+
+.name{
+    font-style: normal;
+    font-family: cursive;
 }
