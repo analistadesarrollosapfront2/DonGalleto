@@ -14,4 +14,9 @@ export class ControlProductosService {
     const url = 'http://localhost:3000/api/productos/listarProductos/';
     return this.http.get<any>(url);
   }
+
+  getMaterias() {
+    const url = 'http://localhost:3000/api/materiasPrimas/listarMateriasPrimas';
+    return this.http.get<any>(url);
+  }
 }

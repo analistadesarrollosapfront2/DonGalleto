@@ -7,9 +7,14 @@ import { ControlProductosService } from 'src/app/service/control-productos/contr
   styleUrls: ['./control-productos.component.scss']
 })
 export class ControlProductosComponent {
+  // Productos
   value: any | undefined;
   items: any[] = [];
   productos: any[] = [];
+// MateriaPrima
+value2: any | undefined;
+items2: any[] = [];
+materias: any[] = [];
 
   constructor(
     private productoService: ControlProductosService,
@@ -19,6 +24,8 @@ export class ControlProductosComponent {
   ngOnInit() {
     this.getProductos();
     this.configureItemsP();
+    this.getMaterias();
+    this.configureItemsMP();
   }
 
   configureItemsP() {
@@ -56,7 +63,7 @@ export class ControlProductosComponent {
         this.productos = response;
       },
       (error) => {
-        console.error('Error al obtener ventas:', error);
+        console.error('Error al obtener los productos:', error);
         this.productos = [];
       }
     );
@@ -64,8 +71,8 @@ export class ControlProductosComponent {
 
   applyFilter() {
     if (this.value) {
-      this.productos = this.productos.filter((venta: any) =>
-      venta.nombre.toLowerCase().includes(this.value.toLowerCase())
+      this.productos = this.productos.filter((productos: any) =>
+      productos.nombre_producto.toLowerCase().includes(this.value.toLowerCase())
     );
     
     } else {
@@ -73,4 +80,65 @@ export class ControlProductosComponent {
     }
   }
   
+
+
+
+
+
+
+
+
+  
+  configureItemsMP() {
+    this.items = [
+      {
+        icon: 'pi pi-book',
+        command: () => {
+          console.log('Habrir ');
+        },
+        tooltipOptions: {
+          tooltipLabel: 'Reporte',
+        },
+      },
+      {
+        icon: 'pi pi-chart-bar',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Barras',
+        },
+      },
+      {
+        icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Pastel',
+        },
+      },
+    ];
+  }
+
+  getMaterias() {
+    this.productoService.getMaterias().subscribe(
+      (response) => {
+        console.log(response)
+        this.materias = response;
+        this.configureItemsMP();
+      },
+      (error) => {
+        console.error('Error al obtener las materias primas:', error);
+        this.productos = [];
+      }
+    );
+  }
+
+  applyFilter2() {
+    if (this.value) {
+      this.materias = this.materias.filter((venta: any) =>
+      venta.nombre.toLowerCase().includes(this.value.toLowerCase())
+    );
+    
+    } else {
+      this.getMaterias();
+    }
+  }
 }
