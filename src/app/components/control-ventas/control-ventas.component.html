@@ -18,13 +18,12 @@
 
             <tr>
               <th style="width:5%"></th>
-              <th pSortableColumn="id_producto" style="width:20%">ID Producto <p-sortIcon field="id_producto"></p-sortIcon></th>
-              <th pSortableColumn="cantidad" style="width:20%">Cantidad <p-sortIcon field="cantidad"></p-sortIcon></th>
+              <!-- <th pSortableColumn="id_producto" style="width:20%">ID Producto <p-sortIcon field="id_producto"></p-sortIcon></th> -->
               <th pSortableColumn="nombre" style="width:20%">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
-              <th pSortableColumn="precio_unitario" style="width:20%">Precio Unitario <p-sortIcon field="precio_unitario"></p-sortIcon>
-              </th>
-              <th pSortableColumn="subtotal " style="width:20%">Subtotal <p-sortIcon field="subtotal"></p-sortIcon></th>
+              <th pSortableColumn="cantidad" style="width:20%">Cantidad <p-sortIcon field="cantidad"></p-sortIcon></th>
+              <th pSortableColumn="unidad" style="width:20%">Unidad Venta <p-sortIcon field="cantidad"></p-sortIcon></th>
               <th pSortableColumn="total" style="width:20%">Total <p-sortIcon field="total"></p-sortIcon></th>
+              <th pSortableColumn="fecha" style="width:20%">Fecha Venta <p-sortIcon field="cantidad"></p-sortIcon></th>
             </tr>
           </ng-template>
           <ng-template pTemplate="body" let-venta>
@@ -33,13 +32,16 @@
                 <p-checkbox name="ventas" [(ngModel)]="selectedVentas" [value]="venta.id_producto"
                   inputId="venta.id_producto"></p-checkbox>
               </td>
-              <td>{{ venta.id_producto }}</td>
+              <!-- <td>{{ venta.id_producto }}</td> -->
+              <td>{{ venta.nombre_producto }}</td>
               <td>{{ venta.cantidad }}</td>
-              <td>{{ venta.nombre }}</td>
-              <td>{{ venta.precio_unitario }}</td>
+              <td>{{ venta.nombre_unidad }}</td>
+              <td>{{ venta.total }}</td>
+              <td>{{ formatearFecha(venta.fecha_venta) }}</td>
 
-              <td>{{ calculateSubtotal(venta) }}</td>
-              <td>{{ calculateTotal(venta) }}</td>
+
+              <!-- <td>{{ calculateSubtotal(venta) }}</td>
+              <td>{{ calculateTotal(venta) }}</td> -->
             </tr>
           </ng-template>
 

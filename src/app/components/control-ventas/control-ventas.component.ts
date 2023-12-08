@@ -58,6 +58,7 @@ export class ControlVentasComponent implements OnInit {
   getVentas() {
     this.ventasService.getVentas().subscribe(
       (response) => {
+        console.log(response)
         this.ventas = response;
       },
       (error) => {
@@ -77,6 +78,16 @@ export class ControlVentasComponent implements OnInit {
     const iva = subtotal * 0.16;
     const total = subtotal + iva;
     return total;
+  }
+
+  formatearFecha(fecha: string){
+    const fechaDate: Date = new Date(fecha);
+    const opciones: object = { day: '2-digit', month: '2-digit', year: 'numeric' };
+
+    // Formatear la fecha al formato de México
+    const fechaFormateada = fechaDate.toLocaleDateString('es-MX', opciones);
+
+    return fechaFormateada;
   }
 
   applyFilter() {
