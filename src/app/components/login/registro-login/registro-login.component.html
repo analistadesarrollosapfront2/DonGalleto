@@ -1,32 +1,33 @@
-<html>
-<div class="container">
-  <div class="p-card login-container">
-    <h2>Registro</h2>
-    <form (ngSubmit)="registro()" autocomplete="off">
-      <div class="p-field">
-        <span class="p-float-label">
-          <input id="correo" type="text" pInputText [(ngModel)]="correo" name="correo" required>
-          <label for="correo">Correo Electrónico</label>
-        </span>
-      </div>
-      <div class="p-field">
-        <span class="p-float-label">
-          <input id="contrasenia" type="password" pInputText [(ngModel)]="contrasenia" name="contrasenia" required>
-          <label for="contrasenia">Contraseña</label>
-        </span>
-      </div>
-      <div class="p-field">
-        <span class="p-float-label">
-          <input id="confirmarContrasenia" type="password" pInputText [(ngModel)]="confirmarContrasenia" name="confirmarContrasenia" required>
+<div class="body">
+  <div class="container">
+    <div class="p-card login-container">
+      <h2>Registro</h2>
+      <form (ngSubmit)="registro()" autocomplete="off">
+        <div class="p-field">
+          <span class="p-float-label">
+            <input id="correo" type="text" pInputText [(ngModel)]="correo" name="correo" required>
+            <label for="correo">Correo Electrónico</label>
+          </span>
+        </div>
+        <div class="p-field">
+          <span class="p-float-label">
+            <input id="contrasenia" type="password" pInputText [(ngModel)]="contrasenia" name="contrasenia" required>
+            <label for="contrasenia">Contraseña</label>
+          </span>
+        </div>
+        <div class="p-field">
+          <span class="p-float-label">
+            <input id="confirmarContrasenia" type="password" pInputText [(ngModel)]="confirmarContrasenia"
+              name="confirmarContrasenia" required>
 
-          <label for="confirmarContrasenia">Confirmar Contraseña</label>
-        </span>
-      </div>
-      <button [disabled]="validarLogin" mat-raised-button id="btn-login" type="submit">Ingresar</button>
-    </form>
+            <label for="confirmarContrasenia">Confirmar Contraseña</label>
+          </span>
+        </div>
+        <button [disabled]="validarLogin" mat-raised-button id="btn-login" type="submit">Ingresar</button>
+      </form>
 
-    <a href="/login" id="btn-regresar" mat-raised-button class="btn">
-      <i class="bi bi-arrow-left"></i> Regresar al Login
-    </a>
+      <a href="/login" id="btn-regresar" mat-raised-button class="btn">
+        <i class="bi bi-arrow-left"></i> Regresar al Login
+      </a>
+    </div>
   </div>
-</div>
