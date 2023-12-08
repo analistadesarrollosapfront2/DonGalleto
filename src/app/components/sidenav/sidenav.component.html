@@ -1,11 +1,11 @@
 <div class="menu">
   <p-button (click)="sidebarVisible = true" class="sidebar-toggle-button">
-    <i class="pi pi-microsoft" style="font-size: 2rem"></i>
+    <i class="pi pi-bars" style="font-size: 2rem"></i>
   </p-button>
   <p-sidebar [(visible)]="sidebarVisible">
     <ng-template class="head" pTemplate="header">
       <div class="sidenav-header">
-        <img src="../../../assets/img/logo.png" alt="Logo">
+        <img id="img-logo" src="../../../assets/img/logo_t.png" alt="Logo">
       </div>
     </ng-template>
 
@@ -14,9 +14,11 @@
       <ul>
         <li  (click)="sidebarVisible = false">
           <a   routerLink="/home">Ventas de Productos</a>
+
         </li>
         <li  (click)="sidebarVisible = false">
-          <a  routerLink="/controlVentas">Control de Ventas</a>
+          <a  routerLink="/controlVentas">
+            Control de Ventas</a>
         </li>
         <li  (click)="sidebarVisible = false">
           <a routerLink="/controlProductos">Control de Productos</a>
@@ -26,7 +28,14 @@
 
     <ng-template pTemplate="footer">
       <div class="sidenav-footer">
-        <a href="#">Cerrar sesión</a>
+        <a href="#">
+          <li>
+            <i class="pi pi-bars" ></i>
+            Cerrar sesión
+          </li>
+
+        </a>
+
       </div>
     </ng-template>
   </p-sidebar>

@@ -8,9 +8,17 @@
 .tituloTabla{
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
-  text-align: center;
-  margin-left: 3%;
   font-size: revert-layer;
+  margin-left: 5vw;
+
+}
+
+::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+  border-color: #814f28;
+}
+
+::ng-deep .p-datatable .p-sortable-column .p-highlight{
+  border-color: #814f28;
 }
 
 :host ::ng-deep .p-speeddial-button.p-button.p-button-icon-only {
@@ -22,11 +30,16 @@
 }
 
 :host ::ng-deep .p-speeddial-direction-right {
-  left: 0 !important;
-  top: calc(100% - 2.5rem) !important;
+  left: 0.5 !important;
+  top: calc(100% - 3rem) !important;
 }
 
 :host ::ng-deep a {
-  color: #fff;
-  background-color: #b27b4b;
+  text-decoration: none;
+  color: #814f28;
+  background-color: #f5cda2;
+}
+
+ ::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background-color: #fbfbfb;
 }
