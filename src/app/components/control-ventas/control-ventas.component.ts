@@ -152,13 +152,13 @@ export class ControlVentasComponent implements OnInit {
 
 
   guardar() {
-    // Aquí puedes implementar la lógica para guardar los datos
+ 
     console.log('Datos guardados:', this.proveedor, this.nombre, this.telefono, this.email, this.colonia, this.calle, this.numero, this.productos, this.diasVisita);
   }
 
-  // Función para modificar los datos del formulario
+
   modificar() {
-    // Implementa la lógica para modificar los datos si es necesario
+ 
   }
   
 }
