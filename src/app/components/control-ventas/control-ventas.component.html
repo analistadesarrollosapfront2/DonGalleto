@@ -122,13 +122,54 @@
 
 
     <p-tabPanel header="Proveedores">
-      <p>
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque
-        corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in
-        culpa
-        qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et
-        expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
-      </p>
+      <div class="card">
+        <h2>Título</h2>
+        <div class="p-grid">
+          <div class="p-field p-col-6">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" [(ngModel)]="nombre" class="p-inputtext">
+          </div>
+          <div class="p-field p-col-6">
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" type="text" [(ngModel)]="telefono" class="p-inputtext">
+          </div>
+          <div class="p-field-full">
+            <label for="email">Email</label>
+            <input id="email" type="text" [(ngModel)]="email" class="p-inputtext">
+          </div>
+          <div class="p-field-full">
+            <label for="colonia">Colonia</label>
+            <input id="colonia" type="text" [(ngModel)]="colonia" class="p-inputtext">
+          </div>
+          <div class="p-field p-col-6">
+            <label for="calle">Calle</label>
+            <input id="calle" type="text" [(ngModel)]="calle" class="p-inputtext">
+          </div>
+          <div class="p-field p-col-6">
+            <label for="numero">Número</label>
+            <input id="numero" type="text" [(ngModel)]="numero" class="p-inputtext">
+          </div>
+          <div class="p-field-full">
+            <label for="productos">Productos</label>
+            <p-dropdown id="productos" [options]="productosOptions" [(ngModel)]="productos" placeholder="Seleccionar" ></p-dropdown>
+          </div>
+          <div class="p-field-full">
+            <label for="diasVisita">Días de Visita</label>
+            <p-dropdown id="diasVisita" [options]="diasVisitaOptions" [(ngModel)]="diasVisita" placeholder="Seleccionar" ></p-dropdown>
+          </div>
+        </div>
+        <div class="p-grid p-justify-end">
+          <div class="p-col">
+            <button type="button" (click)="modificar()" class="p-button p-button-secondary">Modificar</button>
+          </div>
+          <div class="p-col">
+            <button type="button" (click)="guardar()" class="p-button p-button-primary">Guardar</button>
+          </div>
+        </div>
+      </div>
+      
+      
+      
     </p-tabPanel>
   </p-tabView>
 </div>

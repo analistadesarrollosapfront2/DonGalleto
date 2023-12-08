@@ -17,6 +17,19 @@ export class ControlVentasComponent implements OnInit {
   utilidades: any[] = [];
   value2: any | undefined;
   items2: any[] = [];
+  //Proveedor
+  proveedor: string = ''; 
+  nombre: string = '';
+  telefono: string = '';
+  email: string = '';
+  colonia: string = '';
+  calle: string = '';
+  numero: string = '';
+  productos: string = '';
+  diasVisita: string = '';
+  productosOptions: string[] = ['Producto 1', 'Producto 2', 'Producto 3']; 
+  diasVisitaOptions: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']; 
+
   constructor(
     private ventasService: ControlVentasService,
     private messageService: MessageService
@@ -24,7 +37,6 @@ export class ControlVentasComponent implements OnInit {
 
   ngOnInit() {
     this.getVentas();
-   
     this.configureItemsV();
     this.getUtilidades();
     this.configureItemsU();
@@ -134,6 +146,19 @@ export class ControlVentasComponent implements OnInit {
         this.utilidades = [];
       }
     );
+  }
+
+
+
+
+  guardar() {
+    // Aquí puedes implementar la lógica para guardar los datos
+    console.log('Datos guardados:', this.proveedor, this.nombre, this.telefono, this.email, this.colonia, this.calle, this.numero, this.productos, this.diasVisita);
+  }
+
+  // Función para modificar los datos del formulario
+  modificar() {
+    // Implementa la lógica para modificar los datos si es necesario
   }
   
 }

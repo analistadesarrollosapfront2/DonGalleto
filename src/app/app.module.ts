@@ -41,6 +41,7 @@ import { CardModule } from 'primeng/card';
 import { RegistroLoginComponent } from './components/login/registro-login/registro-login.component';
 import { RecuperacionLoginComponent } from './components/login/recuperacion-login/recuperacion-login.component';
 import { ControlVentasComponent } from './components/control-ventas/control-ventas.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { ControlVentasComponent } from './components/control-ventas/control-vent
     ReactiveFormsModule,
     TabViewModule,
     CheckboxModule,
-    SpeedDialModule
+    SpeedDialModule,
+    DropdownModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
