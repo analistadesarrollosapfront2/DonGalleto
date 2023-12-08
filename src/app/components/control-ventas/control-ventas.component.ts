@@ -18,15 +18,32 @@ export class ControlVentasComponent implements OnInit {
   utilidades: any[] = [];
   value2: any | undefined;
   items2: any[] = [];
+  //Proveedor
+  proveedor: string = '';
+  nombre: string = '';
+  telefono: string = '';
+  email: string = '';
+  colonia: string = '';
+  calle: string = '';
+  numero: string = '';
+  productos: string = '';
+  diasVisita: string = '';
+  productosOptions: string[] = ['Producto 1', 'Producto 2', 'Producto 3'];
+  diasVisitaOptions: string[] = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+  selectedProductos: string[] = [];
+  selectedDiasVisita: string[] = [];
+
   constructor(
     private ventasService: ControlVentasService,
     private messageService: MessageService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getVentas();
     this.getProveedores();
     this.configureItemsV();
+    this.getUtilidades();
+    this.configureItemsU();
   }
 
   configureItemsV() {
@@ -42,14 +59,14 @@ export class ControlVentasComponent implements OnInit {
       },
       {
         icon: 'pi pi-chart-bar',
-        command: () => {},
+        command: () => { },
         tooltipOptions: {
           tooltipLabel: 'Grafica de Barras',
         },
       },
       {
         icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
-        command: () => {},
+        command: () => { },
         tooltipOptions: {
           tooltipLabel: 'Grafica de Pastel',
         },
@@ -104,15 +121,43 @@ export class ControlVentasComponent implements OnInit {
 
 
 
+  configureItemsU() {
+    this.items2 = [
+      {
+        icon: 'pi pi-book',
+        command: () => {
+          console.log('Habrir Utilidades ');
+        },
+        tooltipOptions: {
+          tooltipLabel: 'Reporte',
+        },
+      },
+      {
+        icon: 'pi pi-chart-bar',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Barras',
+        },
+      },
+      {
+        icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Pastel',
+        },
+      },
+    ];
+  }
 
 
   getUtilidades() {
     this.ventasService.getUtilidades().subscribe(
       (response) => {
+        console.log('Datos de utilidades:', response);
         this.utilidades = response;
       },
       (error) => {
-        console.error('Error al obtener ventas:', error);
+        console.error('Error al obtener utilidades:', error);
         this.utilidades = [];
       }
     );
@@ -129,4 +174,14 @@ export class ControlVentasComponent implements OnInit {
       }
     );
   }
+
+  guardar() {
+    console.log('Datos guardados:', this.proveedor, this.nombre, this.telefono, this.email, this.colonia, this.calle, this.numero, this.selectedProductos, this.selectedDiasVisita);
+  }
+
+  modificar() {
+
+  }
+
+
 }

@@ -6,10 +6,11 @@
           <h2 class="tituloTabla">Historial de ventas</h2>
           <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
-            <input style="border-radius: 20px;" type="text" placeholder="Buscar" pInputText [(ngModel)]="value" (input)="applyFilter()" />
-        </span>
-      </div>
-        <p-table  [value]="ventas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+            <input style="border-radius: 20px;" type="text" placeholder="Buscar" pInputText [(ngModel)]="value"
+              (input)="applyFilter()" />
+          </span>
+        </div>
+        <p-table [value]="ventas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
           [tableStyle]="{ 'min-width': '50rem' }"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [rowsPerPageOptions]="[5, 10, 20]">
@@ -55,16 +56,21 @@
       </div>
     </p-tabPanel>
 
+
+
+
+
     <p-tabPanel header="Utilidades">
       <div class="card">
         <div class="buscador">
           <h2 class="tituloTabla">Historial de Utilidades</h2>
           <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
-            <input style="border-radius: 20px;" type="text" placeholder="Buscar" pInputText [(ngModel)]="value" (input)="applyFilter()" />
-        </span>
-      </div>
-        <p-table  [value]="ventas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+            <input style="border-radius: 20px;" type="text" placeholder="Buscar" pInputText [(ngModel)]="value"
+              (input)="applyFilter()" />
+          </span>
+        </div>
+        <p-table [value]="utilidades" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
           [tableStyle]="{ 'min-width': '50rem' }"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [rowsPerPageOptions]="[5, 10, 20]">
@@ -73,27 +79,30 @@
 
             <tr>
 
-              <th pSortableColumn="id_producto" style="width:20%">Monto de venta <p-sortIcon field="id_producto"></p-sortIcon></th>
-              <th pSortableColumn="cantidad" style="width:20%">Monto de merma <p-sortIcon field="cantidad"></p-sortIcon></th>
-              <th pSortableColumn="nombre" style="width:20%">Monto de materias primas <p-sortIcon field="nombre"></p-sortIcon></th>
-              <th pSortableColumn="precio_unitario" style="width:20%">Monto de gastos de servicios <p-sortIcon field="precio_unitario"></p-sortIcon>
+              <th pSortableColumn="id_producto" style="width:20%">Monto de venta <p-sortIcon
+                  field="id_producto"></p-sortIcon></th>
+              <th pSortableColumn="cantidad" style="width:20%">Monto de merma <p-sortIcon field="cantidad"></p-sortIcon>
               </th>
-              <th pSortableColumn="subtotal " style="width:20%">Utilidades minimas para rentabilidad <p-sortIcon field="subtotal"></p-sortIcon></th>
-              <th pSortableColumn="total" style="width:20%">Total diario  <p-sortIcon field="total"></p-sortIcon></th>
-              <th pSortableColumn="total" style="width:20%">Total semanal  <p-sortIcon field="total"></p-sortIcon></th>
-              <th pSortableColumn="total" style="width:20%">Total mensual  <p-sortIcon field="total"></p-sortIcon></th>
+              <th pSortableColumn="nombre" style="width:20%">Monto de materias primas <p-sortIcon
+                  field="nombre"></p-sortIcon></th>
+              <th pSortableColumn="precio_unitario" style="width:20%">Monto de gastos de servicios <p-sortIcon
+                  field="precio_unitario"></p-sortIcon>
+              </th>
+              <th pSortableColumn="subtotal " style="width:20%">Utilidades minimas para rentabilidad <p-sortIcon
+                  field="subtotal"></p-sortIcon></th>
+              <th pSortableColumn="total" style="width:20%">Total diario <p-sortIcon field="total"></p-sortIcon></th>
+              <th pSortableColumn="total" style="width:20%">Total semanal <p-sortIcon field="total"></p-sortIcon></th>
+              <th pSortableColumn="total" style="width:20%">Total mensual <p-sortIcon field="total"></p-sortIcon></th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-venta>
+          <ng-template pTemplate="body" let-utilidad>
             <tr>
 
-              <td>{{ venta.id_producto }}</td>
-              <td>{{ venta.cantidad }}</td>
-              <td>{{ venta.nombre }}</td>
-              <td>{{ venta.precio_unitario }}</td>
-
-              <td>{{ calculateSubtotal(venta) }}</td>
-              <td>{{ calculateTotal(venta) }}</td>
+              <td>{{ utilidad.monto_venta }}</td>
+              <td>{{ utilidad.monto_merma }}</td>
+              <td>{{ utilidad.monto_materias_primas }}</td>
+              <td>{{ utilidad.monto_gastos_servicios }}</td>
+              <td>{{ utilidad.utilidades_rentabilidad }}</td>
             </tr>
           </ng-template>
 
@@ -105,7 +114,13 @@
         </p-table>
 
       </div>
+
+
+
     </p-tabPanel>
+
+
+
     <p-tabPanel header="Proveedores">
       <p-table  [value]="proveedores" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
           [tableStyle]="{ 'min-width': '50rem' }"
@@ -146,7 +161,57 @@
           </ng-template>
           <ng-template pTemplate="paginatorright"></ng-template>
         </p-table>
+      <!-- <div class="card">
+        <h2>Título</h2>
+        <div class="p-grid">
+          <div class="p-field p-col-6">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" [(ngModel)]="nombre" class="p-inputtext">
+          </div>
+          <div class="p-field p-col-6">
+            <label for="telefono">Teléfono</label>
+            <input id="telefono" type="text" [(ngModel)]="telefono" class="p-inputtext">
+          </div>
+          <div class="p-field-full">
+            <label for="email">Email</label>
+            <input id="email" type="text" [(ngModel)]="email" class="p-inputtext">
+          </div>
+          <div class="p-field-full">
+            <label for="colonia">Colonia</label>
+            <input id="colonia" type="text" [(ngModel)]="colonia" class="p-inputtext">
+          </div>
+          <div class="p-field p-col-6">
+            <label for="calle">Calle</label>
+            <input id="calle" type="text" [(ngModel)]="calle" class="p-inputtext">
+          </div>
+          <div class="p-field p-col-6">
+            <label for="numero">Número</label>
+            <input id="numero" type="text" [(ngModel)]="numero" class="p-inputtext">
+          </div>
+          <div class="p-field">
+            <label for="productos">Productos</label>
+            <p-multiSelect [options]="productosOptions" [(ngModel)]="selectedProductos"
+              defaultLabel="Seleccione los productos"></p-multiSelect>
+          </div>
+
+          <div class="p-field">
+            <label for="diasVisita">Días de Visita</label>
+            <p-multiSelect [options]="diasVisitaOptions" [(ngModel)]="selectedDiasVisita"
+              defaultLabel="Seleccione los días de visita"></p-multiSelect>
+          </div>
+
+
+
+        </div>
+        <div class="p-grid p-justify-end">
+          <div class="p-col">
+            <button type="button" (click)="modificar()" class="p-button p-button-secondary">Modificar</button>
+          </div>
+          <div class="p-col">
+            <button type="button" (click)="guardar()" class="p-button p-button-primary">Guardar</button>
+          </div>
+        </div>
+      </div> -->
     </p-tabPanel>
   </p-tabView>
 </div>
-

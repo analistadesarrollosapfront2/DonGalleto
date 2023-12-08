@@ -45,6 +45,8 @@ import { RecuperacionLoginComponent } from './components/login/recuperacion-logi
 import { ControlVentasComponent } from './components/control-ventas/control-ventas.component';
 import { ControlProductosComponent } from './components/control-productos/control-productos.component';
 
+import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,7 +89,9 @@ import { ControlProductosComponent } from './components/control-productos/contro
     TabViewModule,
     CheckboxModule,
     SpeedDialModule,
-    DialogModule
+    DialogModule,
+    DropdownModule,
+    MultiSelectModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
