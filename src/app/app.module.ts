@@ -18,6 +18,8 @@ import { MessageService } from 'primeng/api';
 import { TabViewModule } from 'primeng/tabview';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SpeedDialModule } from 'primeng/speeddial';
+import { DialogModule } from 'primeng/dialog';
+
 
 // Material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -41,6 +43,7 @@ import { CardModule } from 'primeng/card';
 import { RegistroLoginComponent } from './components/login/registro-login/registro-login.component';
 import { RecuperacionLoginComponent } from './components/login/recuperacion-login/recuperacion-login.component';
 import { ControlVentasComponent } from './components/control-ventas/control-ventas.component';
+import { ControlProductosComponent } from './components/control-productos/control-productos.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +54,7 @@ import { ControlVentasComponent } from './components/control-ventas/control-vent
     RecuperacionLoginComponent,
     RegistroLoginComponent,
     ControlVentasComponent,
+    ControlProductosComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +86,8 @@ import { ControlVentasComponent } from './components/control-ventas/control-vent
     ReactiveFormsModule,
     TabViewModule,
     CheckboxModule,
-    SpeedDialModule
+    SpeedDialModule,
+    DialogModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

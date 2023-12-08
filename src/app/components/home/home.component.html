@@ -16,38 +16,10 @@
                             </div>                            
                             <ng-template pTemplate="footer">
                                 <!-- <p-button label="Agregar" icon="pi pi-check"></p-button> -->
-                                <p-button label="Agregar" [text]="true" severity="success"></p-button>
+                                <p-button label="Agregar" [text]="true" severity="success" (click)="showDialog(product)"></p-button>
                             </ng-template>
                         </p-card>
                     </div>
-                    <!-- <div class="col-md-4">
-                        <p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '100%'}">
-                            <ng-template pTemplate="header">
-                                <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
-                            </ng-template>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed 
-                            </p>
-                            <ng-template pTemplate="footer">
-                                <p-button label="Save" icon="pi pi-check"></p-button>
-                                <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
-                            </ng-template>
-                        </p-card>
-                    </div>
-                    <div class="col-md-4">
-                        <p-card header="Advanced Card" subheader="Card Subheader" [style]="{ width: '100%'}">
-                            <ng-template pTemplate="header">
-                                <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
-                            </ng-template>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed 
-                            </p>
-                            <ng-template pTemplate="footer">
-                                <p-button label="Save" icon="pi pi-check"></p-button>
-                                <p-button label="Cancel" icon="pi pi-times" styleClass="p-button-secondary" [style]="{ 'margin-left': '.5em' }"></p-button>
-                            </ng-template>
-                        </p-card>
-                    </div> -->
                 </div>          
             </p-scrollPanel>    
         </div>
@@ -61,3 +33,19 @@
         </div>
       </div>
 </p-card>
+
+
+<p-dialog
+header="Agregar unidades"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '30vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  (onHide)="onDialogHide()"
+  >
+    <div class="card flex justify-content-center">
+        <p-selectButton [options]="unidades" [(ngModel)]="valorUnidad" optionLabel="nombre_unidad" optionValue="precio"></p-selectButton>
+        <p>{{valorUnidad}}</p>
+    </div>
+</p-dialog>

@@ -20,7 +20,6 @@
 }
 
 ::ng-deep .p-component, .p-component *{
-    width: 80%;
     margin: auto;
     margin-top: 1%;
 }
@@ -37,4 +36,8 @@
 .name{
     font-style: normal;
     font-family: cursive;
+}
+
+h2{
+    font-size: 1rem;
 }
