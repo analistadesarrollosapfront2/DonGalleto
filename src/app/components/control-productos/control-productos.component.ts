@@ -8,6 +8,7 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./control-productos.component.scss']
 })
 export class ControlProductosComponent {
+  // Productos
   value: any | undefined;
   items: any[] = [];
   productos: any[] = [];
@@ -15,6 +16,14 @@ export class ControlProductosComponent {
   visible3 : boolean = false;
   nombre: string = "";
   nombreEditar: string = "";
+// MateriaPrima
+value2: any | undefined;
+items2: any[] = [];
+materias: any[] = [];
+// Mermas
+value3: any | undefined;
+items3: any[] = [];
+mermas: any[] = [];
 
   constructor(
     private productoService: ControlProductosService, private messageService: MessageService
@@ -24,6 +33,11 @@ export class ControlProductosComponent {
   ngOnInit() {
     this.getProductos();
     this.configureItemsP();
+    this.getMaterias();
+    this.configureItemsMP();
+
+    this.getMermas();
+    this.configureItemsM();
   }
 
   configureItemsP() {
@@ -62,7 +76,7 @@ export class ControlProductosComponent {
         this.productos = response;
       },
       (error) => {
-        console.error('Error al obtener ventas:', error);
+        console.error('Error al obtener los productos:', error);
         this.productos = [];
       }
     );
@@ -70,39 +84,15 @@ export class ControlProductosComponent {
 
   applyFilter() {
     if (this.value) {
-      this.productos = this.productos.filter((venta: any) =>
-      venta.nombre.toLowerCase().includes(this.value.toLowerCase())
+      this.productos = this.productos.filter((productos: any) =>
+      productos.nombre_producto.toLowerCase().includes(this.value.toLowerCase())
     );
-    
+
     } else {
       this.getProductos();
     }
   }
 
-  showDialog(){
-    this.visible2 = true;
-  }
-
-  showDialog2(){
-    this.visible3 = true;
-  }
-
-  showModal(){
-    this.visible2 = true;
-  }
-
-  hideModal(){
-    this.visible2 = false;
-  }
-
-  showMessageSuccess(mensaje:string){
-    this.messageService.add({ key: 'toast', severity: 'success', summary: 'Exitoso', detail: mensaje, life: 3000 });
-    this.messageService.clear();
-  }
-
-  showMessageError(mensaje:string){
-    this.messageService.add({ key: 'toast', severity: 'error', summary: 'Error', detail: mensaje, life: 3000 });
-  }
   
   registrarProducto(){
     this.productoService.postProducto(this.nombre).subscribe(
@@ -120,21 +110,110 @@ export class ControlProductosComponent {
     
   }
 
-  editarProducto(){}
-  
+  configureItemsMP() {
+    this.items2 = [
+      {
+        icon: 'pi pi-book',
+        command: () => {
+          console.log('Habrir ');
+        },
+        tooltipOptions: {
+          tooltipLabel: 'Reporte',
+        },
+      },
+      {
+        icon: 'pi pi-chart-bar',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Barras',
+        },
+      },
+      {
+        icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Pastel',
+        },
+      },
+    ];
+  }
 
-  eliminarProducto(id:number){
-    this.productoService.deleteProductos(id).subscribe(
+  getMaterias() {
+    this.productoService.getMaterias().subscribe(
       (response) => {
         console.log(response)
-        
-        this.getProductos();
-
+        this.materias = response;
+        this.configureItemsMP();
       },
       (error) => {
-        console.error('Error al obtener ventas:', error);
+        console.error('Error al obtener las materias primas:', error);
+        this.materias = [];
       }
     );
+  }
+
+  applyFilter2() {
+    if (this.value2) {
+      this.materias = this.materias.filter((materia: any) =>
+        materia.nombre.toLowerCase().includes(this.value2.toLowerCase())
+      );
+    } else {
+      this.getMaterias();
+    }
+  }
+
+
+
+  configureItemsM() {
+    this.items = [
+      {
+        icon: 'pi pi-book',
+        command: () => {
+          console.log('Habrir ');
+        },
+        tooltipOptions: {
+          tooltipLabel: 'Reporte',
+        },
+      },
+      {
+        icon: 'pi pi-chart-bar',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Barras',
+        },
+      },
+      {
+        icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Pastel',
+        },
+      },
+    ];
+  }
+
+  getMermas() {
+    this.productoService.getMermas().subscribe(
+      (response) => {
+        console.log(response)
+        this.mermas = response;
+      },
+      (error) => {
+        console.error('Error al obtener los productos:', error);
+        this.mermas = [];
+      }
+    );
+  }
+
+  applyFilter3() {
+    if (this.value) {
+      this.mermas = this.mermas.filter((mermas: any) =>
+      mermas.nombre.toLowerCase().includes(this.value.toLowerCase())
+    );
+
+    } else {
+      this.getMermas();
+    }
   }
 
 }
