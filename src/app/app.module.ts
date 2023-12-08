@@ -14,6 +14,10 @@ import { DividerModule } from 'primeng/divider';
 import { TableModule } from 'primeng/table';
 import { PanelModule } from 'primeng/panel';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { MessageService } from 'primeng/api';
+import { TabViewModule } from 'primeng/tabview';
+import { CheckboxModule } from 'primeng/checkbox';
+import { SpeedDialModule } from 'primeng/speeddial';
 
 // Material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -76,8 +80,11 @@ import { ControlVentasComponent } from './components/control-ventas/control-vent
     MatSnackBarModule,
     MatSelectModule,
     ReactiveFormsModule,
+    TabViewModule,
+    CheckboxModule,
+    SpeedDialModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
