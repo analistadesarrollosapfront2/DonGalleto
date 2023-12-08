@@ -1,10 +1,13 @@
 <p-card class="contenido" header="Modulo de ventas">
-    <div class="row contenido">
-        <div class="col-md-6">
-          <h2>Productos</h2>
-            <p-scrollPanel [style]="{ width: '100%', height: '300px' }" styleClass="custombar1">
+  <div class="row contenido">
+        <div class="col-md-8">
+          <div class="col-12 align-middle titulo">
+            <h2>Productos</h2>
+
+          </div>
+            <p-scrollPanel [style]="{ width: '100%', height: '70vh' }" styleClass="custombar1">
                 <div class="row">
-                    <div style="margin-bottom: 1%;" class="col-md-4" *ngFor="let product of arrayProducts" >
+                    <div  (click)="showDialog(product)" style="margin-bottom: 1%;" class="col-md-4 col-lg-3" *ngFor="let product of arrayProducts" >
                         <p-card [style]="{ width: '100%'}">
                             <ng-template pTemplate="header">
                                 <img class="imgProduct" alt="Card" src="{{product.imagen}}" />
@@ -13,47 +16,23 @@
                                 <p class="name">
                                     {{product.nombre_producto}}
                                 </p>
-                            </div>                            
-                            <ng-template pTemplate="footer">
+                            </div>
+                            <ng-template class="footer" pTemplate="footer">
                                 <!-- <p-button label="Agregar" icon="pi pi-check"></p-button> -->
-                                <p-button label="Agregar" [text]="true" severity="success" (click)="showDialog(product)"></p-button>
+                                <p-button class="btn-agregar" label="Agregar" [text]="true" (click)="showDialog(product)"></p-button>
                             </ng-template>
                         </p-card>
                     </div>
-                </div>          
-            </p-scrollPanel>    
+                </div>
+            </p-scrollPanel>
         </div>
         <div class="col-md-1">
             <p-divider layout="vertical"></p-divider>
         </div>    
-        <div class="col-md-5">
+        <div class="col-md-3">
           <h2>Detalles de Venta</h2>
-            <p-scrollPanel [style]="{ width: '100%', height: '300px' }" styleClass="custombar1">
-                <p-table [value]="ventas" [tableStyle]="{ 'min-width': '50rem' }">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Galleta</th>
-                            <th>Unidad</th>
-                            <th>Cantidad</th>
-                            <th>Total</th>
-                            <th>Eliminar</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-venta  let-rowIndex="rowIndex">
-                        <tr>
-                            <td>{{ venta.nombre_producto }}</td>
-                            <td>{{ venta.nombre_unidad }}</td>
-                            <td>{{ venta.cantidad }}</td>
-                            <td>{{ venta.total }}</td>
-                            <td>
-                                <p-button icon="pi pi-trash" (click)="eliminarVenta(rowIndex)"></p-button>
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-                <p *ngIf="ventas.length != 0">{{total}}</p>
-                <p-button *ngIf="ventas.length != 0" label="Guardar venta" [text]="true" severity="success" (click)="showDialog(product)"></p-button>
-            </p-scrollPanel>
+          
+          
         </div>
       </div>
 </p-card>
@@ -68,13 +47,8 @@ header="Agregar unidades"
   [resizable]="false"
   (onHide)="onDialogHide()"
   >
-    <p-selectButton  [options]="unidades" [(ngModel)]="unidadSeleccionada" optionLabel="nombre_unidad" 
-    optionValue="id_unidad" (click)="validarTipoUnidad()"></p-selectButton>        
-    <br>
-    <p style="margin: auto;" *ngIf="unidadSeleccionada">{{mostrarMensajeUnidad}}</p>
-    <br>
-    <p-inputNumber inputId="integeronly" [(ngModel)]="cantidad" *ngIf="unidadSeleccionada"> </p-inputNumber>
-    <br>
-    <p-button label="Agregar" [text]="true" severity="success" *ngIf="unidadSeleccionada" [disabled]="validarCantidad"
-    (click)="agregarVenta()"></p-button>
+    <div class="card flex justify-content-center">
+        <p-selectButton [options]="unidades" [(ngModel)]="valorUnidad" optionLabel="nombre_unidad" optionValue="precio"></p-selectButton>
+        <p>{{valorUnidad}}</p>
+    </div>
 </p-dialog>
