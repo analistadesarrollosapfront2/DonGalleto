@@ -168,8 +168,8 @@
   <form (ngSubmit)="editarProducto()" autocomplete="off">
     <div class="p-field">
       <span class="p-float-label">
-        <input id="idEditar" type="text" pInputText [(ngModel)]="idEditar" name="idEditar" required >
-        <input id="idUnidadEditar" type="text" pInputText [(ngModel)]="idUnidadEditar" name="idUnidadEditar" required>
+        <input id="idEditar" type="text" pInputText [(ngModel)]="idEditar" name="idEditar" required style="display: none;">
+        <input id="idUnidadEditar" type="text" pInputText [(ngModel)]="idUnidadEditar" name="idUnidadEditar" required style="display: none;">
         <input id="nombreEditar" type="text" pInputText [(ngModel)]="nombreEditar" name="nombreEditar" required>
         <label class="label" for="nombreEditar">Nombre Producto</label>
       </span>
@@ -204,7 +204,7 @@
   <form (ngSubmit)="editarProducto()" autocomplete="off">
     <div class="p-field">
       <span class="p-float-label">
-        <input id="idEditar" type="text" pInputText [(ngModel)]="idEditar" name="idEditar" required >
+        <input id="idEditar" type="text" pInputText [(ngModel)]="idEditar" name="idEditar" required>
         <input id="idUnidadEditar" type="text" pInputText [(ngModel)]="idUnidadEditar" name="idUnidadEditar" required>
         <input id="nombreEditar" type="text" pInputText [(ngModel)]="nombreEditar" name="nombreEditar" required>
         <label class="label" for="nombreEditar">Nombre Producto</label>
