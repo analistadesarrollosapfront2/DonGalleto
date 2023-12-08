@@ -4,7 +4,7 @@
           <h2>Productos</h2>
             <p-scrollPanel [style]="{ width: '100%', height: '300px' }" styleClass="custombar1">
                 <div class="row">
-                    <div style="margin-bottom: 1%;" class="col-md-4" *ngFor="let product of arrayProducts" >
+                    <div  (click)="showDialog(product)" style="margin-bottom: 1%;" class="col-md-4 col-lg-3" *ngFor="let product of arrayProducts" >
                         <p-card [style]="{ width: '100%'}">
                             <ng-template pTemplate="header">
                                 <img class="imgProduct" alt="Card" src="{{product.imagen}}" />
@@ -13,15 +13,15 @@
                                 <p class="name">
                                     {{product.nombre_producto}}
                                 </p>
-                            </div>                            
-                            <ng-template pTemplate="footer">
+                            </div>
+                            <ng-template class="footer" pTemplate="footer">
                                 <!-- <p-button label="Agregar" icon="pi pi-check"></p-button> -->
-                                <p-button label="Agregar" [text]="true" severity="success" (click)="showDialog(product)"></p-button>
+                                <p-button class="btn-agregar" label="Agregar" [text]="true" (click)="showDialog(product)"></p-button>
                             </ng-template>
                         </p-card>
                     </div>
-                </div>          
-            </p-scrollPanel>    
+                </div>
+            </p-scrollPanel>
         </div>
         <div class="col-md-1">
             <p-divider layout="vertical"></p-divider>

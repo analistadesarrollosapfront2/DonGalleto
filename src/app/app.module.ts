@@ -20,6 +20,8 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ImageModule } from 'primeng/image';
+
 
 // Material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -44,7 +46,7 @@ import { RegistroLoginComponent } from './components/login/registro-login/regist
 import { RecuperacionLoginComponent } from './components/login/recuperacion-login/recuperacion-login.component';
 import { ControlVentasComponent } from './components/control-ventas/control-ventas.component';
 import { ControlProductosComponent } from './components/control-productos/control-productos.component';
-
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
@@ -93,6 +95,9 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DropdownModule,
     MultiSelectModule,
     InputNumberModule,
+    ImageModule,
+    DynamicDialogModule,
+
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
