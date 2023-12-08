@@ -16,6 +16,39 @@ export class ControlProductosComponent {
   ) { }
 
 
+  ngOnInit() {
+    this.getProductos();
+    this.configureItemsP();
+  }
+
+  configureItemsP() {
+    this.items = [
+      {
+        icon: 'pi pi-book',
+        command: () => {
+          console.log('Habrir ');
+        },
+        tooltipOptions: {
+          tooltipLabel: 'Reporte',
+        },
+      },
+      {
+        icon: 'pi pi-chart-bar',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Barras',
+        },
+      },
+      {
+        icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
+        command: () => { },
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Pastel',
+        },
+      },
+    ];
+  }
+
   getProductos() {
     this.productoService.getProductos().subscribe(
       (response) => {
@@ -28,4 +61,16 @@ export class ControlProductosComponent {
       }
     );
   }
+
+  applyFilter() {
+    if (this.value) {
+      this.productos = this.productos.filter((venta: any) =>
+      venta.nombre.toLowerCase().includes(this.value.toLowerCase())
+    );
+    
+    } else {
+      this.getProductos();
+    }
+  }
+  
 }
