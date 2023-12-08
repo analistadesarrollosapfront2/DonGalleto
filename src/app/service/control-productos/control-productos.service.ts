@@ -24,57 +24,34 @@ export class ControlProductosService {
   //   return this.http.get<any>(url);
   // }
 
-  getProducto(id:number) {
-    const url = 'http://localhost:3000/api/productos/obtenerUnProducto/${id}';
-    return this.http.get<any>(url);
-  }
-
-  postProducto(nombre:string){
-    const url = 'http://localhost:3000/api/productos/insertarProducto/';
-    const body = { nombre };
-    return this.http.post<any>(url, body, httpOptions);
-  }
-
-  putProductos(id: number, nombre:string){
-    const url = 'http://localhost:3000/api/productos/actualizarProducto/';
-    const body = { id, nombre };
-    return this.http.put<any>(url, body, httpOptions);
-  }
-
-  deleteProductos(id:number){
-    const url = 'http://localhost:3000/api/productos/eliminarProducto/';
-    const body = {id};
-    return this.http.delete<any>(url, {body});
-  }
-
-   materiasPrimasData (){
-    return [
-    {
-      "id": 1,
-      "nombre": "Pan",
-      "costo": 10.5,
-      "stock": 50,
-      "nombre_unidad": "Unidad A",
-      "fecha_modificacion": "2023-12-01"
-    },
-    {
-      "id": 2,
-      "nombre": "Azucar",
-      "costo": 15.2,
-      "stock": 30,
-      "nombre_unidad": "Unidad B",
-      "fecha_modificacion": "2023-12-03"
-    },
-    {
-      "id": 3,
-      "nombre": "Trigo",
-      "costo": 8.7,
-      "stock": 80,
-      "nombre_unidad": "Unidad C",
-      "fecha_modificacion": "2023-11-28"
-    },
-  ];
-}
+//    materiasPrimasData (){
+//     return [
+//     {
+//       "id": 1,
+//       "nombre": "Pan",
+//       "costo": 10.5,
+//       "stock": 50,
+//       "nombre_unidad": "Unidad A",
+//       "fecha_modificacion": "2023-12-01"
+//     },
+//     {
+//       "id": 2,
+//       "nombre": "Azucar",
+//       "costo": 15.2,
+//       "stock": 30,
+//       "nombre_unidad": "Unidad B",
+//       "fecha_modificacion": "2023-12-03"
+//     },
+//     {
+//       "id": 3,
+//       "nombre": "Trigo",
+//       "costo": 8.7,
+//       "stock": 80,
+//       "nombre_unidad": "Unidad C",
+//       "fecha_modificacion": "2023-11-28"
+//     },
+//   ];
+// }
 
 
 productosData (){
@@ -142,32 +119,60 @@ productosData (){
 
 
 
-getMermas(): Observable<any[]> {
-  return of(this.mermasData());
-}
+// getMermas(): Observable<any[]> {
+//   return of(this.mermasData());
+// }
+
+// getMaterias(): Observable<any[]> {
+//   return of(this.materiasPrimasData());
+// }
 
 getProductos(): Observable<any[]> {
-  return of(this.productosData());
+  const url = 'http://localhost:3000/api/productos/listarProductos';
+  return this.http.get<any>(url);
 }
 
-getMaterias(): Observable<any[]> {
-  return of(this.materiasPrimasData());
+getProducto(id:number, idUnidad:number) {
+  const url = 'http://localhost:3000/api/productos/obtenerUnProducto/'+id+'/'+idUnidad;
+  return this.http.get<any>(url);
 }
 
+postProducto(nombre:string){
+  const url = 'http://localhost:3000/api/productos/insertarProducto/';
+  const body = { nombre };
+  return this.http.post<any>(url, body, httpOptions);
+}
 
-  // getMermas() {
-  //   const url = 'http://localhost:3000/api/productos/listarMermas/';
-  //   return this.http.get<any>(url);
-  // }
+putProductos(id: number, nombre:string, idUnidadEditar: number){
+  const url = 'http://localhost:3000/api/productos/actualizarProducto/';
+  const body = { id, nombre, idUnidadEditar};
+  return this.http.put<any>(url, body, httpOptions);
+}
 
+deleteProductos(id:number){
+  const url = 'http://localhost:3000/api/productos/eliminarProducto/';
+  const body = {id};
+  return this.http.delete<any>(url, {body});
+}
 
-  // getProductos() {
-  //   const url = 'http://localhost:3000/api/productos/listarProductos/';
-  //   return this.http.get<any>(url);
-  // }
+  getMermas() {
+    const url = 'http://localhost:3000/api/mermas/listarMermas/';
+    return this.http.get<any>(url);
+  }
 
-  // getMaterias() {
-  //   const url = 'http://localhost:3000/api/materiasPrimas/listarMateriasPrimas';
-  //   return this.http.get<any>(url);
-  // }
+  getMaterias() {
+    const url = 'http://localhost:3000/api/materiasPrimas/listarMateriasPrimas';
+    return this.http.get<any>(url);
+  }
+
+  deleteMaterias(id:number){
+    const url = 'http://localhost:3000/api/materiasPrimas/eliminarMateriaPrima/';
+    const body = {id};
+    return this.http.delete<any>(url, {body});
+  }
+
+  getUnidades(){
+    const url = 'http://localhost:3000/api/productos/listarUnidades/';
+    return this.http.get<any>(url);
+  }
 }

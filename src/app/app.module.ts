@@ -20,6 +20,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { TreeSelectModule } from 'primeng/treeselect';
 
 // Material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -92,6 +93,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DialogModule,
     DropdownModule,
     MultiSelectModule,
+    TreeSelectModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

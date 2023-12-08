@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ControlProductosService } from 'src/app/service/control-productos/control-productos.service';
 import { MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-control-productos',
@@ -12,21 +13,37 @@ export class ControlProductosComponent {
   value: any | undefined;
   items: any[] = [];
   productos: any[] = [];
+  visible : boolean = false;
   visible2 : boolean = false;
   visible3 : boolean = false;
+  visible4 : boolean = false;
+  visible5 : boolean = false;
+  visible6 : boolean = false;
+  visibleConfirm : boolean = false;
   nombre: string = "";
   nombreEditar: string = "";
-// MateriaPrima
-value2: any | undefined;
-items2: any[] = [];
-materias: any[] = [];
-// Mermas
-value3: any | undefined;
-items3: any[] = [];
-mermas: any[] = [];
+  idUnidadEditar : number = 0;
+  idEditar: number = 0;
+  // MateriaPrima
+  value2: any | undefined;
+  items2: any[] = [];
+  materias: any[] = [];
+  nombre_merma : string ="";
+  costo : number = 0;
+  stock : number = 0;
+  // Mermas
+  value3: any | undefined;
+  items3: any[] = [];
+  mermas: any[] = [];
+  monto_mermado : number = 0;
+  causa : string = "";  
+
+  nodes: any[] = [];
+
+  selectedNodes: any;
 
   constructor(
-    private productoService: ControlProductosService, private messageService: MessageService
+    private productoService: ControlProductosService, private messageService: MessageService, private route: ActivatedRoute
   ) { }
 
 
@@ -41,12 +58,12 @@ mermas: any[] = [];
   }
 
   configureItemsP() {
-    this.items = [
+    this.items3 = [
       {
         icon: 'pi pi-book',
         command: () => {
           console.log('Habrir ');
-          this.showDialog()
+          this.visible5 = true;
         },
         tooltipOptions: {
           tooltipLabel: 'Agregar',
@@ -67,6 +84,18 @@ mermas: any[] = [];
         },
       },
     ];
+  }
+
+  showModal(){
+    this.visible = true;
+  }
+
+  hidenModal(){
+    this.visible = false;
+  }
+
+  showDialog(){
+    this.visibleConfirm = true;
   }
 
   getProductos() {
@@ -93,29 +122,13 @@ mermas: any[] = [];
     }
   }
 
-  
-  registrarProducto(){
-    this.productoService.postProducto(this.nombre).subscribe(
-      (response) => {
-        console.log(response)
-        
-        this.getProductos();
-        this.hideModal();
-
-      },
-      (error) => {
-        console.error('Error al obtener ventas:', error);
-      }
-    );
-    
-  }
-
   configureItemsMP() {
     this.items2 = [
       {
         icon: 'pi pi-book',
         command: () => {
           console.log('Habrir ');
+          this.visible3 = true;
         },
         tooltipOptions: {
           tooltipLabel: 'Reporte',
@@ -169,10 +182,10 @@ mermas: any[] = [];
       {
         icon: 'pi pi-book',
         command: () => {
-          console.log('Habrir ');
+          this.showModal();
         },
         tooltipOptions: {
-          tooltipLabel: 'Reporte',
+          tooltipLabel: 'Agergar',
         },
       },
       {
@@ -214,6 +227,98 @@ mermas: any[] = [];
     } else {
       this.getMermas();
     }
+  }
+
+  registrarProducto(){
+    this.productoService.postProducto(this.nombre).subscribe(
+      (response) => {
+        console.log(response)
+        this.getProductos();
+        this.hidenModal();
+      },
+      (error) => {
+        console.error('Error al obtener ventas:', error);
+      }
+    ); 
+  }
+
+  editProducto(id:number, idUnidad:number){
+    console.log(id)
+   // suponiendo que el ID está en la ruta
+      this.productoService.getProducto(id, idUnidad).subscribe(
+        (response) => {
+          console.log(response);
+          this.nombreEditar = response[0].nombre_producto;
+          this.idEditar = response[0].id_producto;
+          this.idUnidadEditar = response[0].id_unidad;
+          this.visible2 = true;
+        },
+        (error) => {
+          console.error('Error al obtener ventas:', error);
+        }
+      );
+  }
+
+  editarProducto(){
+    this.productoService.putProductos(this.idEditar, this.nombreEditar, this.idUnidadEditar).subscribe(
+      (response) => {
+        console.log(response);
+        this.nombreEditar = "";
+        this.idUnidadEditar = 0;
+        this.idEditar = 0;
+        this.visible2 = false;
+        this.getProductos();
+      },
+      (error) => {
+        console.error('Error al obtener ventas:', error);
+      }
+    );
+  }
+
+  eliminarProducto(id:number){
+    this.productoService.deleteProductos(id).subscribe(
+      (response) => {
+        console.log(response)
+        this.getProductos();
+        this.hidenModal();
+      },
+      (error) => {
+        console.error('Error al obtener ventas:', error);
+      }
+    );
+  }
+
+  editMerma(id:number){
+
+  }
+  editarMerma(){}
+
+  eliminarMerma(id:number){
+
+  }
+
+
+
+  registrarMateria(){
+    
+  }
+
+  editMateria(id:number){
+
+  }
+  editarMateria(){}
+
+  eliminarMateria(id:number){
+    this.productoService.deleteMaterias(id).subscribe(
+      (response) => {
+        console.log(response)
+        this.getMaterias();
+        this.visible5;
+      },
+      (error) => {
+        console.error('Error al obtener ventas:', error);
+      }
+    );
   }
 
 }

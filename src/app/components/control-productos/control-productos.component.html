@@ -17,27 +17,30 @@
             <ng-template pTemplate="header">
 
               <tr>
-        <th pSortableColumn="id" style="width:20%">#<p-sortIcon field="id"></p-sortIcon></th>
+        <!-- <th pSortableColumn="id" style="width:20%">#<p-sortIcon field="id"></p-sortIcon></th> -->
                 <th pSortableColumn="nombre" style="width:20%">Nombre <p-sortIcon field="id_producto"></p-sortIcon></th>
                 <th pSortableColumn="costo" style="width:20%">Costo <p-sortIcon field="cantidad"></p-sortIcon></th>
                 <th pSortableColumn="stock" style="width:20%">Stock <p-sortIcon field="nombre"></p-sortIcon></th>
                 <th pSortableColumn="nombre_unidad" style="width:20%">Unidad <p-sortIcon field="precio_unitario"></p-sortIcon></th>
-
-                <th pSortableColumn="" style="width:20%">Fecha de modificacion<p-sortIcon field="total"></p-sortIcon></th>
+                <th pSortableColumn="acciones" style="width:20%">Acciones <p-sortIcon field="Acciones"></p-sortIcon></th>
 
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-materias>
               <tr>
-                <td>{{ materias.id }}</td>
+                <!-- <td>{{ materias.id }}</td> -->
                 <td>{{ materias.nombre }}</td>
                 <td>{{ materias.costo }}</td>
                 <td>{{ materias.stock }}</td>
                 <td>{{ materias.nombre_unidad }}</td>
+                <th>
+                  <p-button label="Editar" (click)="editMateria(materias.id)"></p-button>
+                  <p-button label="Eliminar" severity="danger" (click)="eliminarMateria(materias.id)"></p-button>
+                </th>
               </tr>
             </ng-template>
             <ng-template pTemplate="paginatorleft">
-              <p-speedDial [model]="items2" direction="right"></p-speedDial>
+              <p-speedDial [model]="items3" direction="right"></p-speedDial>
             </ng-template>
             <ng-template pTemplate="paginatorright"></ng-template>
           </p-table>
@@ -66,23 +69,27 @@
                 <th pSortableColumn="cantidad" style="width:20%">Monto de merma <p-sortIcon field="cantidad"></p-sortIcon></th>
                 <th pSortableColumn="nombre_unidad" style="width:20%">Unidad de Merma <p-sortIcon field="nombre_unidad"></p-sortIcon></th>
                 <th pSortableColumn="precio_unitario" style="width:20%">Motivo <p-sortIcon field="precio_unitario"></p-sortIcon></th>
-
+                <th pSortableColumn="Acciones" style="width:20%">Acciones <p-sortIcon field="Acciones"></p-sortIcon></th>
               </tr>
             </ng-template>
             <ng-template pTemplate="body" let-mermas>
               <tr>
 
-                <td>{{mermas.nombre  }}</td>
-                <td>{{ mermas.cantidad }}</td>
+                <td>{{ mermas.nombre_producto  }}</td>
+                <td>{{ mermas.monto_mermado }}</td>
                 <td>{{ mermas.nombre_unidad }}</td>
-                <td>{{ mermas.precio_unitario }}</td>
+                <td>{{ mermas.causa }}</td>
+                <td>
+                  <p-button label="Editar" (click)="editMerma(mermas.id)"></p-button>
+                  <p-button label="Eliminar" severity="danger" (click)="eliminarMerma(mermas.id)"></p-button>
+                </td>
 
 
               </tr>
             </ng-template>
 
             <ng-template pTemplate="paginatorleft">
-              <p-speedDial [model]="items" direction="right"></p-speedDial>
+              <p-speedDial [model]="items2" direction="right"></p-speedDial>
 
             </ng-template>
             <ng-template pTemplate="paginatorright"></ng-template>
@@ -128,7 +135,7 @@
               <td>{{ productos.nombre_unidad }}</td>
               <td>{{productos.precio }}</td>
               <td>
-                <p-button label="Editar" (click)="showDialog2()"></p-button>
+                <p-button label="Editar" (click)="editProducto(productos.id_producto, productos.id_unidad)"></p-button>
                 <p-button label="Eliminar" severity="danger" (click)="eliminarProducto(productos.id_producto)"></p-button>
               </td>
             </tr>
@@ -144,7 +151,7 @@
 </div>
 
 
-<p-dialog header="Registro de productos" [(visible)]="visible2" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+<p-dialog header="Registro de productos" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
   <form (ngSubmit)="registrarProducto()" autocomplete="off">
     <div class="p-field">
       <span class="p-float-label">
@@ -157,10 +164,12 @@
   </form>
 </p-dialog>
 
-<p-dialog header="Editar de productos" [(visible)]="visible3" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+<p-dialog header="Editar de productos" [(visible)]="visible2" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
   <form (ngSubmit)="editarProducto()" autocomplete="off">
     <div class="p-field">
       <span class="p-float-label">
+        <input id="idEditar" type="text" pInputText [(ngModel)]="idEditar" name="idEditar" required >
+        <input id="idUnidadEditar" type="text" pInputText [(ngModel)]="idUnidadEditar" name="idUnidadEditar" required>
         <input id="nombreEditar" type="text" pInputText [(ngModel)]="nombreEditar" name="nombreEditar" required>
         <label class="label" for="nombreEditar">Nombre Producto</label>
       </span>
@@ -169,3 +178,98 @@
     <button mat-raised-button id="btn-login" type="submit">Guardar</button>
   </form>
 </p-dialog>
+
+<p-dialog header="Registro de mermas" [(visible)]="visible3" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+  <form (ngSubmit)="registrarProducto()" autocomplete="off">
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="monto_mermado" type="number" pInputText [(ngModel)]="monto_mermado" name="monto_mermado" required>
+        <label class="label" for="monto_mermado">Monto mermado</label>
+      </span>
+    </div>
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="causa" type="text" pInputText [(ngModel)]="causa" name="causa" required>
+        <label class="label" for="causa">Causa</label>
+      </span>
+    </div>
+    <div class="p-field">
+      <p-toast key="toast"></p-toast>
+      <button mat-raised-button id="btn-login" type="submit">Guardar</button>
+    </div>
+    </form>
+</p-dialog>
+
+<p-dialog header="Editar de mermas" [(visible)]="visible4" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+  <form (ngSubmit)="editarProducto()" autocomplete="off">
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="idEditar" type="text" pInputText [(ngModel)]="idEditar" name="idEditar" required >
+        <input id="idUnidadEditar" type="text" pInputText [(ngModel)]="idUnidadEditar" name="idUnidadEditar" required>
+        <input id="nombreEditar" type="text" pInputText [(ngModel)]="nombreEditar" name="nombreEditar" required>
+        <label class="label" for="nombreEditar">Nombre Producto</label>
+      </span>
+    </div>
+    <p-toast key="toast"></p-toast>
+    <button mat-raised-button id="btn-login" type="submit">Guardar</button>
+  </form>
+</p-dialog>
+
+<p-dialog header="Registro de materias primas" [(visible)]="visible5" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+  <form (ngSubmit)="registrarMateria()" autocomplete="off">
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="monto_mermado" type="number" pInputText [(ngModel)]="monto_mermado" name="monto_mermado" required>
+        <label class="label" for="monto_mermado">Monto mermado</label>
+      </span>
+    </div>  
+
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="causa" type="text" pInputText [(ngModel)]="causa" name="causa" required>
+        <label class="label" for="causa">Causa</label>
+      </span>
+    </div>
+    
+    <p-toast key="toast"></p-toast>
+    <button mat-raised-button id="btn-login" type="submit">Guardar</button>
+  </form>
+</p-dialog>
+
+<p-dialog header="Editar materias primas" [(visible)]="visible6" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+  <form (ngSubmit)="editarMateria()" autocomplete="off">
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="nombre_merma" type="text" pInputText [(ngModel)]="nombre_merma" name="nombre_merma" required >
+        <label class="label" for="nombre_merma">Causa</label>
+      </span>
+    </div>
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="costo" type="text" pInputText [(ngModel)]="costo" name="costo" required >
+        <label class="label" for="causa">Causa</label>
+      </span>
+    </div>
+
+    <div class="p-field">
+      <span class="p-float-label">
+        <div class="card flex justify-content-center">
+          <p-treeSelect class="md:w-20rem w-full" containerStyleClass="w-full" [(ngModel)]="selectedNodes" [options]="nodes" placeholder="Select Item"></p-treeSelect>
+        </div>
+      </span>
+    </div>
+
+    
+
+    <div class="p-field">
+      <span class="p-float-label">
+        <input id="stock" type="text" pInputText [(ngModel)]="stock" name="stock" required >
+        <label class="label" for="stock">Stock</label>
+      </span>
+    </div>
+    <p-toast key="toast"></p-toast>
+    <button mat-raised-button id="btn-login" type="submit">Guardar</button>
+  </form>
+</p-dialog>
+
+
