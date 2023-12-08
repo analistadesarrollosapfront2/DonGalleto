@@ -10,6 +10,7 @@ import { ControlVentasService } from 'src/app/service/control-ventas/control-ven
 export class ControlVentasComponent implements OnInit {
   // Ventas
   ventas: any[] = [];
+  proveedores: any[] = [];
   selectedVentas: string[] = [];
   value: any | undefined;
   items: any[] = [];
@@ -24,6 +25,7 @@ export class ControlVentasComponent implements OnInit {
 
   ngOnInit() {
     this.getVentas();
+    this.getProveedores();
     this.configureItemsV();
   }
 
@@ -112,6 +114,18 @@ export class ControlVentasComponent implements OnInit {
       (error) => {
         console.error('Error al obtener ventas:', error);
         this.utilidades = [];
+      }
+    );
+  }
+
+  getProveedores() {
+    this.ventasService.getProveedores().subscribe(
+      (response) => {
+        this.proveedores = response;
+      },
+      (error) => {
+        console.error('Error al obtener ventas:', error);
+        this.proveedores = [];
       }
     );
   }
