@@ -24,7 +24,10 @@ export class ControlVentasComponent implements OnInit {
 
   ngOnInit() {
     this.getVentas();
+   
     this.configureItemsV();
+    this.getUtilidades();
+    this.configureItemsU();
   }
 
   configureItemsV() {
@@ -91,17 +94,46 @@ export class ControlVentasComponent implements OnInit {
 
 
 
+  configureItemsU() {
+    this.items2 = [
+      {
+        icon: 'pi pi-book',
+        command: () => {
+          console.log('Habrir Utilidades ');
+        },
+        tooltipOptions: {
+          tooltipLabel: 'Reporte',
+        },
+      },
+      {
+        icon: 'pi pi-chart-bar',
+        command: () => {},
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Barras',
+        },
+      },
+      {
+        icon: 'pi pi-chart-pie  custom-speed-dial-icon ',
+        command: () => {},
+        tooltipOptions: {
+          tooltipLabel: 'Grafica de Pastel',
+        },
+      },
+    ];
+  }
 
 
   getUtilidades() {
     this.ventasService.getUtilidades().subscribe(
       (response) => {
+        console.log('Datos de utilidades:', response);
         this.utilidades = response;
       },
       (error) => {
-        console.error('Error al obtener ventas:', error);
+        console.error('Error al obtener utilidades:', error);
         this.utilidades = [];
       }
     );
   }
+  
 }
