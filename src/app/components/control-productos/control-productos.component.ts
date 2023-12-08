@@ -1,10 +1,9 @@
 import { ControlProductosService } from 'src/app/service/control-productos/control-productos.service';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-// import * as jsPDF from 'jspdf';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as XLSX from 'xlsx';
-import { DialogService } from 'primeng/dynamicdialog';
+
 @Component({
   selector: 'app-control-productos',
   templateUrl: './control-productos.component.html',
@@ -24,7 +23,7 @@ export class ControlProductosComponent {
   items3: any[] = [];
   mermas: any[] = [];
 
-  constructor(private productoService: ControlProductosService,public dialogService: DialogService) {}
+  constructor(private productoService: ControlProductosService) {}
 
   @ViewChild('materiasTable', { static: false }) materiasTable!: ElementRef;
   @ViewChild('mermasTable', { static: false }) mermasTable!: ElementRef;
