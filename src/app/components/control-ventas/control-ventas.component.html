@@ -9,7 +9,7 @@
             <input style="border-radius: 20px;" type="text" placeholder="Buscar" pInputText [(ngModel)]="value" (input)="applyFilter()" />
         </span>
       </div>
-        <p-table  [value]="ventas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+        <p-table  id="ventas" [value]="ventas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
           [tableStyle]="{ 'min-width': '50rem' }"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [rowsPerPageOptions]="[5, 10, 20]">
@@ -64,7 +64,7 @@
             <input style="border-radius: 20px;" type="text" placeholder="Buscar" pInputText [(ngModel)]="value" (input)="applyFilter()" />
         </span>
       </div>
-        <p-table  [value]="ventas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+        <p-table  id="utilidades"   [value]="ventas" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
           [tableStyle]="{ 'min-width': '50rem' }"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [rowsPerPageOptions]="[5, 10, 20]">
@@ -107,7 +107,7 @@
       </div>
     </p-tabPanel>
     <p-tabPanel header="Proveedores">
-      <p-table  [value]="proveedores" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
+      <p-table id="proveedores"   [value]="proveedores" [paginator]="true" [rows]="5" [showCurrentPageReport]="true"
           [tableStyle]="{ 'min-width': '50rem' }"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [rowsPerPageOptions]="[5, 10, 20]">

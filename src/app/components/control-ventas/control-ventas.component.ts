@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild ,ElementRef} from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { ControlVentasService } from 'src/app/service/control-ventas/control-ventas.service';
-
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
+import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-control-ventas',
   templateUrl: './control-ventas.component.html',
@@ -39,6 +41,10 @@ export class ControlVentasComponent implements OnInit {
     private messageService: MessageService
   ) { }
 
+  @ViewChild('ventasTable', { static: false }) ventasTable!: ElementRef;
+  @ViewChild('utilidadesTable', { static: false }) utilidadesTable!: ElementRef;
+  @ViewChild('proveedoresTable', { static: false }) proveedoresTable!: ElementRef;
+
   ngOnInit() {
     this.getVentas();
     this.getProveedores();
@@ -53,7 +59,8 @@ export class ControlVentasComponent implements OnInit {
       {
         icon: 'pi pi-book',
         command: () => {
-          console.log('Habrir V');
+          this.generarPDF('ventas');
+          this.generarExcel('ventas');
         },
         tooltipOptions: {
           tooltipLabel: 'Reporte',
@@ -128,7 +135,8 @@ export class ControlVentasComponent implements OnInit {
       {
         icon: 'pi pi-book',
         command: () => {
-          console.log('Habrir Utilidades ');
+          this.generarPDF('utilidades');
+          this.generarExcel('utilidades');
         },
         tooltipOptions: {
           tooltipLabel: 'Reporte',
@@ -183,7 +191,8 @@ export class ControlVentasComponent implements OnInit {
       {
         icon: 'pi pi-book',
         command: () => {
-          console.log('Habrir Proveedor');
+          this.generarPDF('proveedores');
+          this.generarExcel('proveedores');
         },
         tooltipOptions: {
           tooltipLabel: 'Reporte',
@@ -211,6 +220,65 @@ export class ControlVentasComponent implements OnInit {
 
   modificar() {
 
+  }
+
+
+  generarPDF(nombreTabla: string) {
+    let content: HTMLElement | null = document.getElementById(nombreTabla);
+
+    if (content) {
+      const paginador = content.querySelector('.paginador');
+      if (paginador && paginador instanceof HTMLElement) {
+        paginador.style.display = 'none';
+      }
+
+      html2canvas(content).then((canvas) => {
+        if (paginador && paginador instanceof HTMLElement) {
+          paginador.style.display = 'block';
+        }
+
+        const imgData = canvas.toDataURL('image/png');
+
+        const pdf = new jsPDF({
+          orientation: 'landscape',
+          unit: 'mm',
+          format: 'a4',
+        });
+
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+        pdf.addImage(imgData, 'png', 0, 0, pdfWidth, pdfHeight);
+
+        pdf.save(`${nombreTabla}_reporte.pdf`);
+      });
+    }
+  }
+
+  generarExcel(nombreTabla: string) {
+    let content: HTMLElement | null = document.getElementById(nombreTabla);
+
+    if (content) {
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.table_to_sheet(content);
+
+      XLSX.utils.book_append_sheet(wb, ws, 'Tabla');
+
+      const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+      const buf = new ArrayBuffer(wbout.length);
+      const view = new Uint8Array(buf);
+
+      for (let i = 0; i < wbout.length; i++) {
+        view[i] = wbout.charCodeAt(i) & 0xff;
+      }
+
+      const blob = new Blob([buf], { type: 'application/octet-stream' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = `${nombreTabla}_reporte.xlsx`;
+      link.click();
+    }
   }
 
 

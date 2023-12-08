@@ -45,7 +45,7 @@ import { RegistroLoginComponent } from './components/login/registro-login/regist
 import { RecuperacionLoginComponent } from './components/login/recuperacion-login/recuperacion-login.component';
 import { ControlVentasComponent } from './components/control-ventas/control-ventas.component';
 import { ControlProductosComponent } from './components/control-productos/control-productos.component';
-
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
@@ -94,6 +94,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DropdownModule,
     MultiSelectModule,
     ImageModule,
+    DynamicDialogModule,
 
   ],
   providers: [MessageService],

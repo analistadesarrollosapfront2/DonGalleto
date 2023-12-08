@@ -3,7 +3,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 // import * as jsPDF from 'jspdf';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
-
+import * as XLSX from 'xlsx';
+import { DialogService } from 'primeng/dynamicdialog';
 @Component({
   selector: 'app-control-productos',
   templateUrl: './control-productos.component.html',
@@ -23,7 +24,7 @@ export class ControlProductosComponent {
   items3: any[] = [];
   mermas: any[] = [];
 
-  constructor(private productoService: ControlProductosService) {}
+  constructor(private productoService: ControlProductosService,public dialogService: DialogService) {}
 
   @ViewChild('materiasTable', { static: false }) materiasTable!: ElementRef;
   @ViewChild('mermasTable', { static: false }) mermasTable!: ElementRef;
@@ -45,8 +46,8 @@ export class ControlProductosComponent {
       {
         icon: 'pi pi-book',
         command: () => {
-          console.log('Habrir Material ');
           this.generarPDF('materias');
+          this.generarExcel('materias');
         },
         tooltipOptions: {
           tooltipLabel: 'Reporte',
@@ -97,8 +98,8 @@ export class ControlProductosComponent {
       {
         icon: 'pi pi-book',
         command: () => {
-          console.log('Habrir Mermas');
           this.generarPDF('mermas');
+          this.generarExcel('mermas');
         },
         tooltipOptions: {
           tooltipLabel: 'Reporte',
@@ -150,7 +151,7 @@ export class ControlProductosComponent {
         icon: 'pi pi-book',
         command: () => {
           this.generarPDF('productos');
-          console.log(' productos');
+          this.generarExcel('productos');
         },
         tooltipOptions: {
           tooltipLabel: 'Reporte',
@@ -198,14 +199,26 @@ export class ControlProductosComponent {
     }
   }
 
+
+
+
+
   generarPDF(nombreTabla: string) {
     let content: HTMLElement | null = document.getElementById(nombreTabla);
 
     if (content) {
+      const paginador = content.querySelector('.paginador');
+      if (paginador && paginador instanceof HTMLElement) {
+        paginador.style.display = 'none';
+      }
+
       html2canvas(content).then((canvas) => {
+        if (paginador && paginador instanceof HTMLElement) {
+          paginador.style.display = 'block';
+        }
+
         const imgData = canvas.toDataURL('image/png');
 
-        // Ajustamos el tamaño del PDF
         const pdf = new jsPDF({
           orientation: 'landscape',
           unit: 'mm',
@@ -216,12 +229,35 @@ export class ControlProductosComponent {
         const pdfWidth = pdf.internal.pageSize.getWidth();
         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-        // Agregamos la imagen al PDF
-        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.addImage(imgData, 'png', 0, 0, pdfWidth, pdfHeight);
 
-        // Descargamos el PDF
         pdf.save(`${nombreTabla}_reporte.pdf`);
       });
+    }
+  }
+
+  generarExcel(nombreTabla: string) {
+    let content: HTMLElement | null = document.getElementById(nombreTabla);
+
+    if (content) {
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.table_to_sheet(content);
+
+      XLSX.utils.book_append_sheet(wb, ws, 'Tabla');
+
+      const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+      const buf = new ArrayBuffer(wbout.length);
+      const view = new Uint8Array(buf);
+
+      for (let i = 0; i < wbout.length; i++) {
+        view[i] = wbout.charCodeAt(i) & 0xff;
+      }
+
+      const blob = new Blob([buf], { type: 'application/octet-stream' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = `${nombreTabla}_reporte.xlsx`;
+      link.click();
     }
   }
 }
