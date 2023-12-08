@@ -19,7 +19,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { DialogModule } from 'primeng/dialog';
-
+import { InputNumberModule } from 'primeng/inputnumber';
 
 // Material
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -92,6 +92,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DialogModule,
     DropdownModule,
     MultiSelectModule,
+    InputNumberModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
