@@ -21,13 +21,13 @@ export class HomeComponent implements OnInit {
   public ventas: any = [];
   public total: number = 0;
   public msjTotal: any = 0;
-  constructor(private authServiceService: AuthServiceService,){
+  constructor(private authServiceService: AuthServiceService,private messageService: MessageService){
 
   }
   ngOnInit(): void {
     this.authServiceService.obtenerProductos().subscribe(
       (response) => {
-        // console.log(response);
+        console.log(response);
         this.arrayProducts = response;
       },
       (error) => {
@@ -100,6 +100,21 @@ export class HomeComponent implements OnInit {
     }
 
     this.msjTotal = `Este es el total de ventas: $ ${this.total}`;
+  }
+
+  guardarVenta(){
+    console.log(this.ventas);
+    this.authServiceService.registrarVenta(this.ventas).subscribe(
+      (response) => {
+        console.log(response);
+        // this.arrayProducts = response;
+        this.messageService.clear();
+      this.messageService.add({ key: 'toast', severity: 'error', summary: 'Error', detail: response.mensaje });
+      },
+      (error) => {
+        console.error('Error al iniciar sesión', error);
+      }
+    );    
   }
 
 }

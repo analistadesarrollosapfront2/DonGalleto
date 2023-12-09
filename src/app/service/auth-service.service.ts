@@ -28,6 +28,10 @@ export class AuthServiceService {
     return this.http.get<any>(url);
   }
 
+  registrarVenta(array: any): Observable<any> {
+    const url = 'http://localhost:3000/api/productos/registrarventa/';
+    return this.http.post<any>(url, array, httpOptions);
+  }
 
   registrar(correo: string, contrasenia: string): Observable<any> {
     const url = 'http://localhost:3000/api/usuarios/registrar/';

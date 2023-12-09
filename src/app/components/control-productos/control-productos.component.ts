@@ -1,9 +1,9 @@
 import { ControlProductosService } from 'src/app/service/control-productos/control-productos.service';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 // import * as jsPDF from 'jspdf';
-// import { jsPDF } from 'jspdf';
-// import html2canvas from 'html2canvas';
-// import * as XLSX from 'xlsx';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
+import * as XLSX from 'xlsx';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
